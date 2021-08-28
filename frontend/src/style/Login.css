@@ -1,0 +1,47 @@
+.connection h1{
+    color: #082044;
+    font-size: 40px;
+    float: left;
+    margin: 0 0 0 5%;
+}
+.htmlForm{
+    color: red;
+    float: left;
+    margin-left: 5%;
+    font-size: 17px;
+    margin-top: 25px;
+    font-weight: 600;
+    text-align: center;
+}
+.login-form{
+    text-align: center;
+}
+.connection input{
+    border: 2px solid red;
+    border-radius: 5px;
+    height: 50px;
+    width: 90%;
+    padding-left: 20px;
+    font-size: 17px;
+    background-color: #fff;
+}
+
+.connection .button{
+    margin-top: 60px;    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #082044;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 50%;
+}
+.error{
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+

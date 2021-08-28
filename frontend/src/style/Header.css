@@ -1,0 +1,51 @@
+.nav{
+    width: 100%;
+    height: 80px ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-bottom: 2px solid #082044;
+}
+.logo{
+    width: 30%;
+    text-align: center;
+}
+.logo img{
+    width: 75%;
+}
+.icon-navItem{
+    width: 25%;
+    padding-top: 25px;
+    text-align: center;
+}
+.icon-not{
+    width: 15%;
+    padding-top: 25px;
+    text-align: center; 
+}
+.icon-navItem:hover{
+    border-bottom: 5px solid red;
+} 
+.icon-not:hover{
+    border-bottom: 5px solid red;
+}
+.navItem{
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+.navItem img{
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+}
+.notification{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+.notification img{
+    width: 30px;
+    height: 30px;
+}
+
