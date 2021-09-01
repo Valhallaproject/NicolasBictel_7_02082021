@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import '../../style/Login.css';
+import './Login.css';
 
 
 
@@ -25,7 +25,13 @@ const Login = () => {
           console.log(res);
           error.innerHTML = res.data.errors;
         }else {
-          window.location ="/Accueil"
+        localStorage.setItem(
+          "userData",
+            JSON.stringify({
+                userId: res.data.userId,
+            })
+          );
+          window.location = "/Accueil"
         }
       })
       .catch((err) => {

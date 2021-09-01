@@ -24,6 +24,11 @@ const user = sequelize.define('user', {
         allowNull: false,
         required: true
     },
+    photo: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    
 });
 
 // Création de la table 'users'

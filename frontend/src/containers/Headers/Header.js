@@ -5,7 +5,7 @@ import iconUser from "../../images/icon-user.png";
 import iconNotif from "../../images/icon-notification.png";
 import iconMessage from "../../images/icon-message.png";
 import iconDeconnect from "../../images/icon-deconnect.png";
-import '../../style/Header.css';
+import './Header.css';
 
 function Header (){
 
@@ -13,7 +13,7 @@ function Header (){
 
     return(
         <div className="nav">
-            <div className="logo">
+            <div className="logo-header">
                 <img src={logoNav} alt="logo groupomania"/>
             </div>
             <div className="navItem">

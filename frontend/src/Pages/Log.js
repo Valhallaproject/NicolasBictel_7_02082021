@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import logo from "../images/icon-white.png";
-import Login from "../components/Log/Login";
-import SignUp from "../components/Log/SignUp";
+import Login from "../containers/Log/Login";
+import SignUp from "../containers/Log/SignUp";
 import '../style/Log.css';
 
 function Log(props) {

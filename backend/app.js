@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 
 
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/post');
 const app = express();
 
 //manage cors
@@ -17,5 +18,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes)
 
 module.exports = app;

@@ -2,6 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');    //Plugin for hashing the password
 const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
+const db = require('../config/sequelize-config');
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -18,6 +19,7 @@ exports.signup = (req, res, next) => {
     const firstName = (req.body.firstName);
     const lastName = (req.body.lastName);
     const password = (req.body.password);
+    
 
 
     const regexLastName = /^[A-Z][A-Za-z\é\è\ê\ø\-]+$/;
@@ -116,3 +118,12 @@ exports.delete = (req, res,next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
+
+exports.userProfile =  ( req, res, next) => {
+  User.findAll( 
+     db.data
+  )
+      .then(users => res.status(200).json(users))
+      .catch(error => res.status(400).json({ error }));
+};
+

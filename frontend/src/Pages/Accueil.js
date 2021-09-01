@@ -1,15 +1,22 @@
 import React from "react";
-import Header from "../components/Headers/Header"
+import Header from "../containers/Headers/Header"
+import Publication from "../containers/Posts/Post-home.js"
+import '../containers/Posts/Post-home.css';
 
-function Accueil (){
+
+function Accueil  () {
     
-
-
     return(
-        <div className="header">
-            <Header/>
+        <div> 
+            <div className="header">
+                <Header/>
+            </div>
+            <div className="publi">
+                <Publication/>
+            </div>
         </div>
-    )
+        
+    )  
 };
 
 export default Accueil;
