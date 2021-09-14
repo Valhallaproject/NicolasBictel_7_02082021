@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');    //Plugin for hashing the password
 const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
 const db = require('../config/sequelize-config');
+const mysql = require("mysql2");
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -41,9 +42,6 @@ exports.signup = (req, res, next) => {
     if(email != verifyEmail){
       return res.status(201).json({ error : "Veuillez entrer une adresse email Valide !"});
     }
-    //if(! schemaPassword.validate(password)){
-      //return res.status(201).json({ error : "Le mot de passe doit comprendre au moins 1 majuscule, 1 minuscule, 1 chiffre et contenir au moins 8 caractéres !"});
-    //}
     if(schemaPassword.validate(password)) {
     bcrypt.hash(password, 10)    //we hash the password
     .then(hash => {
@@ -54,7 +52,12 @@ exports.signup = (req, res, next) => {
         password: hash    //we assign the hash obtained as the value of the password property
       });
       user.save()    //we save the data in the database
-        .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
+        .then(() => res.status(201).json({userId: user.id,
+          token: jwt.sign(
+            { userId: user.id },
+            process.env.TOKEN,
+            { expiresIn: '24h' },
+          )}))//{ message: 'Utilisateur créé !' }
         .catch(error => res.status(201).json({ message : "Utilisateur éxistant !" }));
     })
     .catch(error => res.status(500).json({ error }));
@@ -96,34 +99,79 @@ exports.login = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
 };
 //delete user account
-exports.delete = (req, res,next) => {
+exports.delete = (req, res) => {
   const email = (req.body.email);
   const password = (req.body.password);
   User.findOne({ where: { email: email }})
     .then(user => {
       if (!user) {
-        return res.status(401).json({ error: 'Utilisateur non trouvé !'});
+        return res.status(200).json({ error: 'Utilisateur non trouvé !'});
       }
       bcrypt.compare(password, user.password)
       .then(valid => {
         if (!valid) {
-          return res.status(401).json({ error: 'Mot de passe incorrect !' });
-        } else {
+          return res.status(200).json({ error: 'Mot de passe incorrect !' });
+        } 
+        else {
         User.destroy({ where: { email: email } })
             .then(() => res.status(200).json({ message: "Utilisateur supprimé de la base de données" }))
             .catch(error => res.status(500).json({ error }));
       }
     })
     .catch(error => res.status(500).json({ error }));
-    })
+  })
     .catch(error => res.status(500).json({ error }));
 };
-
-exports.userProfile =  ( req, res, next) => {
+//AllUserProfile
+exports.allUserProfile =  ( req, res, next) => {
   User.findAll( 
      db.data
   )
       .then(users => res.status(200).json(users))
       .catch(error => res.status(400).json({ error }));
 };
+//OneUserProfile
+exports.userProfile = (req, res, next) => {
+      User.findOne({ 
+         where : {id: req.body.id}
+      })
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(400).json({ error }));
+   
+};
+//UpdateProfile
+exports.updateProfile = async (req, res) => {
+	try {
+		const userToFind = await User.findOne({
+			attributes: ["id", "firstname", "lastName", "email", "password", "photo", "banner"],
+			where: { id: req.body.id }
+		});
 
+		if (!userToFind) {
+			throw new Error("Sorry,we can't find your account");
+		}
+
+		const userToUpdate = await User.update(
+			{
+				firstName: req.body.firstName,
+			},
+			{
+				where: { id: req.user.id }
+			}
+		);
+
+		if (!userToUpdate) {
+			throw new Error("Sorry,something gone wrong,please try again later");
+		}
+		res.status(200).json({
+			user: userToUpdate,
+			message: "Your account has been update"
+		});
+
+		if (!userToUpdate) {
+			throw new Error("Sorry,we can't update your account");
+		}
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+};

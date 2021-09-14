@@ -1,8 +1,32 @@
-.connection h1{
+.contentUpdate{
+    width: 100%;
+    position: fixed;
+    margin-top: 10vh;
+}
+.Update{
+    width: 50%;
+    height: 500px;
+    border-radius: 15px;
+    border: 5px solid red;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+.close{
+    margin-top: 2%;
+    margin-right: 2%;
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: 4px solid red;
+    border-radius: 15px;
+    cursor: pointer;
+}
+h1{
     color: #082044;
     font-size: 40px;
     float: left;
-    margin: 0 0 0 5%;
+    margin: 0 0 0 0 5%
 }
 .htmlForm{
     color: red;
@@ -11,12 +35,11 @@
     font-size: 17px;
     margin-top: 25px;
     font-weight: 600;
+}
+.update-form{
     text-align: center;
 }
-.login-form{
-    text-align: center;
-}
-.connection input{
+.Update input{
     border: 2px solid red;
     border-radius: 5px;
     height: 50px;
@@ -26,8 +49,10 @@
     background-color: #fff;
 }
 
-.connection .button{
-    margin-top: 60px;    font-weight: 600;
+.Update .button{
+    text-align: center;
+    margin-top: 60px;
+    font-weight: 600;
     font-size: 22px;
     text-align: center;
     color: #FFFFFF;
@@ -43,5 +68,3 @@
     font-size: 20px;
     font-weight: 600;
 }
-
-

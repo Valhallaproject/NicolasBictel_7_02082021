@@ -3,6 +3,11 @@ const sequelize = require('../config/sequelize-config');
 
 // Création du modèle 'User'
 const user = sequelize.define('user', {
+    id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     firstName: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,8 +33,12 @@ const user = sequelize.define('user', {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    
+    banner: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
 });
+
 
 // Création de la table 'users'
 user.sync()

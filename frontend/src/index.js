@@ -1,25 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './index.css';
-import Log from './Pages/Log';
-import Accueil from './Pages/Accueil';
+import App from './App'
 import reportWebVitals from './reportWebVitals';
-
-const Routing = () => {
-  return(
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Log}/>
-        <Route path="/Accueil" component={Accueil}/>
-      </Switch>
-    </Router>
-  )
-}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routing />
+    < App />
   </React.StrictMode>,
   document.getElementById('root')
 );

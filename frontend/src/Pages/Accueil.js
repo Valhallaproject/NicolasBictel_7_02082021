@@ -5,7 +5,14 @@ import '../containers/Posts/Post-home.css';
 
 
 function Accueil  () {
-    
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
+    if (user === null) {
+        window.location = "/Log"
+        
+    }
+
     return(
         <div> 
             <div className="header">

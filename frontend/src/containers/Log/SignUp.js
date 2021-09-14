@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import TokenService from "../../services/token.service";
 import './SignUp.css';
 
 function SignUp () { 
@@ -21,16 +22,28 @@ function SignUp () {
           password,
       }
     })
-      .then((res) => {
-        if(res.data.error){
-          console.log(res)
-          error.innerHTML = res.data.error;
+      .then((response) => {
+        if (response.data.token) {
+          TokenService.setUser(response.data.userId);
+          console.log(response.data.userId);
         }
-        if(res.data.message){
-          error.innerHTML = res.data.message;
+        if(response.data.error){
+          console.log(response)
+          error.innerHTML = response.data.error;
+        }
+        if(response.data.message){
+          error.innerHTML = response.data.message;
         }
         else{
-          window.location ="/Accueil"
+          window.location ="/"
+        }
+        try {
+          const { token } = response.data;
+          console.log(token);
+          window.localStorage.setItem("accessToken", token);
+          JSON.stringify({ token }, null, 2) 
+          
+        } catch (err) {
         }
       })
       .catch((err) => {
@@ -38,7 +51,9 @@ function SignUp () {
       });        
   }
   return (
+    
     <div className="register">
+      
     <div className="inscription">
       <h1>S'inscrire</h1>
       <br/><br/><br/>
@@ -81,7 +96,7 @@ function SignUp () {
         <br/>
         <div className="error"></div>
         <br/>
-        <input type="submit" value="S'inscrire" className="button" />
+        <input type="submit" value="S'inscrire"  className="button"/>
         
       </form>
     </div>

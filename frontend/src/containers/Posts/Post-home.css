@@ -1,7 +1,7 @@
 
  .post{
     width: 50%;
-    height: 12vh;
+    height: 100px;
     margin: 0 auto;
     padding: 10px;
     text-align: center;
@@ -34,18 +34,7 @@
     width: 100%;
     margin: 0 auto;
 }
-p{
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    background-color: #082044;
-    color: #fff;
-    font-weight: bold;
-    font-size: 60px;
-    margin: 0 auto;
-    text-align: center;
-    text-transform: uppercase;
-}
+
 .newPost{
     text-align: center;
     width: 80%;
@@ -65,6 +54,7 @@ p{
 }
 textarea{
     width: 98%;
+    height: 70px;
     border-radius: 20px;
     margin-bottom: 1vh;
     border: none;

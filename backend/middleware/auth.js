@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
+
 //authentification
 module.exports = (req, res, next) => {
   try {
@@ -17,3 +18,6 @@ module.exports = (req, res, next) => {
     });
   }
 };
+
+
+

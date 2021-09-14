@@ -1,49 +1,55 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import TokenService from "../../services/token.service";
 import './Login.css';
 
 
-
 const Login = () => {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (e) => { 
+  const submitHandler = (e) => { 
     e.preventDefault();
     const error = document.querySelector('.error');
-    axios({
+     axios({
       method: "post",
       url: 'http://localhost:3000/api/user/login',
       data : {
         email,
         password,
       }
-      
     })
-      .then(res => {
-        if (res.data.errors){
-          console.log(res);
-          error.innerHTML = res.data.errors;
+      .then(response => {
+          if (response.data.token) {
+            TokenService.setUser(response.data.userId);
+            console.log(response.data.userId);
+          }
+        if (response.data.errors){
+          console.log(response.data.errors);
+          error.innerHTML = response.data.errors;
         }else {
-        localStorage.setItem(
-          "userData",
-            JSON.stringify({
-                userId: res.data.userId,
-            })
-          );
-          window.location = "/Accueil"
+          console.log(response)
+          window.location = "/"
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+       console.log(response)
+          try {
+            const { token } = response.data;
+            console.log(token);
+            window.localStorage.setItem("accessToken", token);
+            JSON.stringify({ token }, null, 2) 
+            
+          } catch (err) {
+          }
+      }) 
   }
+    
   return (
     <div className="Login">
       <div className="connection">
         <h1>Se connecter</h1>
         <br/><br/><br/>
-        <form id="login" className="login-form" onSubmit={handleLogin}>
+        <form id="login" className="login-form" onSubmit={submitHandler}>
         <label className="htmlForm" id="email">Adresse mail</label>
           <input 
             type="email"  
@@ -70,7 +76,7 @@ const Login = () => {
       </form>
     </div>
   </div>
-  );
+  )
 };
 
 export default Login;

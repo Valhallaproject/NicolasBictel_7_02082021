@@ -25,6 +25,17 @@
     text-align: center;
     line-height: 40px;
 }
+.icon-not button{
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+.icon-navItem button{
+    background-color: #fff;
+    border: none;
+    width: 100%;
+}
+
 .icon-navItem:hover{
     border-bottom: 5px solid red;
 } 
@@ -40,6 +51,7 @@
     width: 30px;
     height: 30px;
     font-weight: bold;
+    cursor: pointer;
 }
 .notification{
     display: flex;
@@ -49,5 +61,6 @@
 .notification img{
     width: 30px;
     height: 30px;
+    cursor: pointer;
 }
 

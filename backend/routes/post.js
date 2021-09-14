@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 const postCtrl = require('../controllers/post');
 
 
-router.post('/addPost', postCtrl.addPost);
-router.delete('/delete', postCtrl.deletePost);
+router.post('/addPost', auth, postCtrl.addPost);
+router.delete('/delete', auth, postCtrl.deletePost);
 
 module.exports = router;

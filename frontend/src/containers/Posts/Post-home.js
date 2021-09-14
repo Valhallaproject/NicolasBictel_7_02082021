@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Photouser from '../../components/Photos/Photo-user';
+import PhotoUser from '../../components/Photos/Photo-user';
+import '../../components/Photos/Photouser.css'
 import './Post-home.css';
 
 const Post = () => {
@@ -22,9 +23,8 @@ const Post = () => {
     return(
         <div className="post">
         <div className="text-post">
-            <Photouser
-            />
-            
+           
+            <PhotoUser/>
             <form id="newPost" className="newPost" onSubmit={handlePost}>
             <textarea
             placeholder="Ecrivez quelque chose" 
