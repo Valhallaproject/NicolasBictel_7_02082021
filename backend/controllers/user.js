@@ -95,7 +95,6 @@ exports.login = (req, res, next) => {
         })
          .catch(error => res.status(500).json({ error }));
     })
-    
     .catch(error => res.status(500).json({ error }));
 };
 //delete user account
@@ -120,7 +119,7 @@ exports.delete = (req, res) => {
     })
     .catch(error => res.status(500).json({ error }));
   })
-    .catch(error => res.status(500).json({ error }));
+  .catch(error => res.status(500).json({ error }));
 };
 //AllUserProfile
 exports.allUserProfile =  ( req, res, next) => {

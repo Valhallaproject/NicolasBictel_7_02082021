@@ -1,0 +1,15 @@
+.feed{
+    text-align: center;
+    margin-top: 50px;
+}
+.postItem{
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #f6b8b8;
+    border-radius: 20px;
+    width: 50%;
+    height: 70px;
+    margin: 0 auto ;
+    overflow: hidden;
+    margin-top: 20px;
+}

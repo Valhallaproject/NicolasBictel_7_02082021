@@ -2,8 +2,8 @@ import axios from "axios";
 
 const url = 'http://localhost:3000/api/user/'
 
-export const login = async (email, password) => {
-  await axios({
+export const handleLogin = (email, password) => {
+   axios({
   method: "post",
   url: 'http://localhost:3000/api/user/login',
   data : {
@@ -18,7 +18,7 @@ export const getAllUser = async () => {
 }
 
 const ApiUser = {
-  login,
+  handleLogin,
   getAllUser
 }
 

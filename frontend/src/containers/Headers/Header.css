@@ -6,6 +6,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     border-bottom: 2px solid #082044;
+    background-color: #fff;
 }
 .logo-header{ 
     width: 30%;

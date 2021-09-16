@@ -17,7 +17,7 @@ function FormUpdate () {
       headers:{'Authorization': "x-access-token"}
     })
     .then((response)=>{
-                      
+      console.log(response);                
       TokenService.removeUser();
       window.location = "/Log"
                       

@@ -13,15 +13,17 @@
 }
 .title h1{
     color: white;
+    padding: 0 10% 0 10%;
 }
 .logo{
+    margin-top: 15%;
     width: 70%;
 }
 .contenu{
     width: 50%;
 }
 .container{
-    padding-top: 10vh;
+    padding-top: 15vh;
     width: 60%;
     margin: 0 auto;
 }

@@ -1,39 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "../containers/Headers/Header"
 import axios from "axios";
 import PhotoProfile from "../components/Photos/Photo-profile";
 import Banner from "../components/Banner/Banner"
 import '../style/profile.css'
-import LogiqueUpdate from "../containers/DeleteProfile/LogiqueDelete";
-import UpdateProfile from "../containers/DeleteProfile/DeleteModal";
+import LogiqueDelete from "../containers/DeleteProfile/LogiqueDelete";
+import DeleteProfile from "../containers/DeleteProfile/DeleteModal";
 
 
 function Profile () { 
-
-    const user = JSON.parse(localStorage.getItem('user'));
-    axios.get('http://localhost:3000/api/user/allUser')
-        
-
-         .then((response) =>{
-            //console.log(response.data);
-            for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].id === user) {
-                    let firstName = response.data[i].firstName;
-                    let lastName = response.data[i].lastName;
-                    document.querySelector('.userName').innerHTML = firstName + " " + lastName
-                }
-            } 
-        })
+    const user = JSON.parse(localStorage.getItem('user'))
+    const token = localStorage.getItem('accessToken');
     
-        const {display, toggle} = LogiqueUpdate();
-   
-   
-         return(
+    const [userName, setUserName] = useState()
+    axios.get('http://localhost:3000/api/user/allUser', {
+        headers : {
+            "Content-Type": 'application/json',
+            "Authorization": token
+            
+        },
+    })
+    .then((response) =>{
+        for (let i = 0; i < response.data.length; i++) {
+            if (response.data[i].id === user) {
+                let firstName = response.data[i].firstName;
+                let lastName = response.data[i].lastName;
+                setUserName(firstName + " " + lastName)
+            }
+        } 
+    })
+    const {display, toggle} = LogiqueDelete();
+
+    return(
         <div>  
-             <UpdateProfile
-                    display={display}
-                    hide={toggle}
-                />      
+            <DeleteProfile
+                display={display}
+                hide={toggle}
+            />      
             <div className="header">
                 <Header/>
             </div >
@@ -46,7 +49,7 @@ function Profile () {
                 </div>
             </div>
             <div>
-                <p className="userName"></p>
+                <p className="userName">{userName}</p>
             </div>
             <div className="button">
                 <button
@@ -55,12 +58,9 @@ function Profile () {
                 >
                     Supprimer mon Profile
                 </button>
-                
             </div>
         </div>
-        
     ) 
-    
     
 };
 export default Profile

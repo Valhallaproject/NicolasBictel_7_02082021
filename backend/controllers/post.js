@@ -14,6 +14,12 @@ exports.addPost = (req, res) => {
       .catch(error => res.status(400).json({ error }));
 };
 
+exports.getAllPost= (req, res,) => {
+    Post.findAll()
+      .then(sauces => res.status(200).json(sauces))
+      .catch(error => res.status(400).json({ error }));
+};
+
 exports.deletePost = (req, res) => {
     Post.findOne({    
         where : {id : req.body.id}

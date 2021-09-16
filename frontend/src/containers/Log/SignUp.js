@@ -58,38 +58,42 @@ function SignUp () {
       <h1>S'inscrire</h1>
       <br/><br/><br/>
       <form id="signIn" className="signUp-form" onSubmit={handleSignUp}>
-      <label className="htmlForm" id="lastName">Nom</label>
+      <label className="htmlForm" id="lastName"></label>
         <input
           type="text"
           id="lastName"
           name="lastName"
+          placeholder="Nom"
           onChange={(e) => setLastName(e.target.value)}
           value={lastName}
         />
         <br/>
-        <label className="htmlForm" id="firstName">Prénom</label>
+        <label className="htmlForm" id="firstName"></label>
         <input
           type="text"
           id="firstName"
           name="firstName"
+          placeholder="Prénom"
           onChange={(e) => setFirstName(e.target.value)}
           value={firstName}
         />
         <br/>
-        <label className="htmlForm" id="email">Adresse mail</label>
+        <label className="htmlForm" id="email"></label>
         <input
           type="email"
           id="email"
           name="email"
+          placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
         />
         <br/>
-        <label className="htmlForm" id="password" data-error="Minimum une majuscule, un chiffre et 8 lettres">Mot de passe</label>
+        <label className="htmlForm" id="password" data-error="Minimum une majuscule, un chiffre et 8 lettres"></label>
         <input
           type="password"
           id="password"
           name="password"
+          placeholder="Mot de passe"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />

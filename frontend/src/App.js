@@ -8,23 +8,27 @@ import axios from 'axios';
 
 
 function App() {
-  const instance = axios.create({baseURL : 'http://localhost:3001/api/user' });
 
+  const instance = axios.create({
+    baseURL : 'http://localhost:3001/api/user',
+    headers : {
+        "Content-Type": "application/json",
+        
+    },
+  });
 
-  function getLocalAccessToken() {
+function getLocalAccessToken() {
     const accessToken = window.localStorage.getItem("accessToken");
     return accessToken;
   }
   
-  
 // Add a request interceptor
-instance.interceptors.request.use((request) => { 
-  console.log(request)
+instance.interceptors.request.use((config) => { 
   const token = getLocalAccessToken();
   if (token) {
-    requestAnimationFrame.headers["x-access-token"] = token;
+    config.headers["Authorization"] = token;
   }
-    return request;
+    return config;
   },
   (error) => {
     return Promise.reject(error);

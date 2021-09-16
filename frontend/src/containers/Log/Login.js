@@ -5,41 +5,41 @@ import './Login.css';
 
 
 const Login = () => {
-  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const submitHandler = (e) => { 
     e.preventDefault();
     const error = document.querySelector('.error');
-     axios({
+    axios({
       method: "post",
       url: 'http://localhost:3000/api/user/login',
       data : {
         email,
         password,
       }
+      
     })
       .then(response => {
-          if (response.data.token) {
-            TokenService.setUser(response.data.userId);
-            console.log(response.data.userId);
-          }
+        if (response.data) {
+          TokenService.setUser(response.data.userId);
+          console.log(response.data)
+        }
         if (response.data.errors){
-          console.log(response.data.errors);
           error.innerHTML = response.data.errors;
         }else {
-          console.log(response)
           window.location = "/"
         }
-       console.log(response)
-          try {
-            const { token } = response.data;
-            console.log(token);
-            window.localStorage.setItem("accessToken", token);
-            JSON.stringify({ token }, null, 2) 
+        
+        try {
+          const { token } = response.data;
+          console.log(token);
+          window.localStorage.setItem("accessToken", token);
+          JSON.stringify({ token }, null, 2) 
+          console.log(response.data.userId);
+          console.log(response.data.token);
             
-          } catch (err) {
+          }catch (err) {
           }
       }) 
   }
@@ -50,20 +50,22 @@ const Login = () => {
         <h1>Se connecter</h1>
         <br/><br/><br/>
         <form id="login" className="login-form" onSubmit={submitHandler}>
-        <label className="htmlForm" id="email">Adresse mail</label>
+        <label className="htmlForm" id="email"></label>
           <input 
             type="email"  
             id="email" 
             name="email"
+            placeholder="Adresse mail"
             onChange={(e) => setEmail(e.target.value)}
             value={email}
           />
         <br/>
-        <label className="htmlForm" id="password">Mot de passe</label>
+        <label className="htmlForm" id="password"></label>
           <input 
             type="password"  
             id="password" 
             name="password"
+            placeholder="Mot de passe"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
