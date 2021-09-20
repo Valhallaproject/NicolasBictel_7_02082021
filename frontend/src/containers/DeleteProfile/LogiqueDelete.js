@@ -1,15 +1,15 @@
 import {useState} from "react"
 
-const LogiqueUpdate = () => {
-    const [display, setDisplay] = useState(false);
-    function toggle(){
-        setDisplay(!display)
+const LogiqueDelete = () => {
+    const [displayDelete, setDisplayDelete] = useState(false);
+    function toggleDelete(){
+        setDisplayDelete(!displayDelete)
     }
 
     return {
-        display,
-        toggle
+        displayDelete,
+        toggleDelete
     }
 }
     
-export default LogiqueUpdate
+export default LogiqueDelete

@@ -17,9 +17,6 @@ function AllPost (){
             setPosts(response.data)
         })
     },[token]);
-
-
-
     return(
         <div className="feed">
             {posts ? <PostList posts={posts} /> : posts}

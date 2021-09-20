@@ -6,6 +6,8 @@ import Banner from "../components/Banner/Banner"
 import '../style/profile.css'
 import LogiqueDelete from "../containers/DeleteProfile/LogiqueDelete";
 import DeleteProfile from "../containers/DeleteProfile/DeleteModal";
+import LogiqueUpdate from "../containers/UpdateProfile/LogiqueUpdate";
+import UpdateProfile from "../containers/UpdateProfile/UpdateModal";
 
 
 function Profile () { 
@@ -29,14 +31,19 @@ function Profile () {
             }
         } 
     })
-    const {display, toggle} = LogiqueDelete();
+    const {displayDelete, toggleDelete} = LogiqueDelete();
+    const {displayUpdate, toggleUpdate} = LogiqueUpdate();
 
     return(
         <div>  
             <DeleteProfile
-                display={display}
-                hide={toggle}
+                displayDelete={displayDelete}
+                hideDelete={toggleDelete}
             />      
+            <UpdateProfile
+                displayUpdate={displayUpdate}
+                hideUpdate={toggleUpdate}
+            />  
             <div className="header">
                 <Header/>
             </div >
@@ -53,10 +60,16 @@ function Profile () {
             </div>
             <div className="button">
                 <button
-                    className="ModProfile"
-                    onClick={toggle}
+                    className="DelProfile"
+                    onClick={toggleDelete}
                 >
                     Supprimer mon Profile
+                </button>
+                <button
+                    className="ModProfile"
+                    onClick={toggleUpdate}
+                >
+                    Modifier mon profile
                 </button>
             </div>
         </div>

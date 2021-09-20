@@ -4,6 +4,8 @@ const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
 const db = require('../config/sequelize-config');
 const mysql = require("mysql2");
+const user = require('../models/User');
+const fs = require('fs'); 
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -130,7 +132,7 @@ exports.allUserProfile =  ( req, res, next) => {
       .catch(error => res.status(400).json({ error }));
 };
 //OneUserProfile
-exports.userProfile = (req, res, next) => {
+exports.userProfile = (req, res,) => {
       User.findOne({ 
          where : {id: req.body.id}
       })
@@ -139,38 +141,26 @@ exports.userProfile = (req, res, next) => {
    
 };
 //UpdateProfile
-exports.updateProfile = async (req, res) => {
-	try {
-		const userToFind = await User.findOne({
-			attributes: ["id", "firstname", "lastName", "email", "password", "photo", "banner"],
-			where: { id: req.body.id }
-		});
-
-		if (!userToFind) {
-			throw new Error("Sorry,we can't find your account");
-		}
-
-		const userToUpdate = await User.update(
-			{
-				firstName: req.body.firstName,
-			},
-			{
-				where: { id: req.user.id }
-			}
-		);
-
-		if (!userToUpdate) {
-			throw new Error("Sorry,something gone wrong,please try again later");
-		}
-		res.status(200).json({
-			user: userToUpdate,
-			message: "Your account has been update"
-		});
-
-		if (!userToUpdate) {
-			throw new Error("Sorry,we can't update your account");
-		}
-	} catch (error) {
-		res.status(400).json({ error: error.message });
-	}
-};
+exports.updateProfile = (req, res, next) => {
+  const photo = (req.body.data.photo);
+  const firstName = (req.body.data.firstName);
+  const lastName = (req.body.data.lastName);
+  const banner = (req.body.data.banner);
+  
+  const userObject = req.file ?
+    {
+      ...JSON.parse(req.body.data.user),
+      photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+      banner: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : { ...req.body.data };
+  User.update({
+    firstName: firstName ? firstName: user.firstName,
+    lastName: lastName ? lastName: user.lastName,
+    photo: photo ? photo: user.photo,
+    banner: banner ? banner: user.banner
+  },
+  {where: { id: req.body.data.id }},
+  { ...userObject, where :{ id: req.body.data.id}})
+    .then(() => res.status(200).json({ message: 'Profil modifié !'}))
+    .catch(error => res.status(400).json({ error }));
+}

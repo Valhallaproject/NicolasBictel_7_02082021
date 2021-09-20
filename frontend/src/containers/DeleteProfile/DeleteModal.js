@@ -1,25 +1,21 @@
 import React from "react";
 import './Delete.css';
-import FormUpdate from './FormDelete'
+import FormDelete from './FormDelete'
 
 
 
-const UpdateProfile = ({display, hide}) => display ? ( 
- 
-
-  
+const deleteProfile = ({displayDelete, hideDelete}) => displayDelete ? ( 
   
   <React.Fragment>
-      <div className="contentUpdate">
-        <div className="Update"> 
-          <button className="close" onClick={hide}>X</button>
-          <h1>Supprimer mon profile</h1><br/><br/><br/><br/>
-          <FormUpdate/>
+      <div className="contentDelete">
+        <div className="Delete"> 
+          <button className="close" onClick={hideDelete}>X</button>
+          <h1>Supprimer mon profile</h1><br/><br/><br/><br/><br/><br/>
+          <FormDelete/>
         </div>
       </div>
   </React.Fragment>
   //}
 ) : null;
-
   
-export default UpdateProfile
+export default deleteProfile

@@ -11,6 +11,7 @@ const Post = () => {
 
     const handlePost = (e) => {
         e.preventDefault();
+
         axios({
             method: "post",
             url: 'http://localhost:3000/api/post/addPost',
@@ -19,17 +20,18 @@ const Post = () => {
             },
             headers:{
                 "Content-Type": 'application/json',
-                "authorization":  token
+                "Authorization":  token
             }
-            
         })
+     
     }
     return(
         <div className="post">
             <div className="text-post">
                 <PhotoUser/>
-                    <form id="newPost" className="newPost" onSubmit={handlePost}>
+                    <form id="newPost" className="newPost" onSubmit={handlePost} >
                     <textarea
+                        className="postText"
                         placeholder="Ecrivez quelque chose" 
                         onChange={(e) => setContent(e.target.value)}
                         value={content}>   

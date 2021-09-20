@@ -2,7 +2,8 @@ import axios from "axios";
 import TokenService from "../../services/token.service";
 import React, { useState } from "react";
 
-function FormUpdate () { 
+function FormDelete () { 
+  const token = localStorage.getItem('accessToken');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleDelete = (e) => {
@@ -14,7 +15,7 @@ function FormUpdate () {
         email,
         password
       },
-      headers:{'Authorization': "x-access-token"}
+      headers:{'Authorization': token}
     })
     .then((response)=>{
       console.log(response);                
@@ -23,15 +24,9 @@ function FormUpdate () {
                       
     })   
   }
-            
-            
-   
-  
   return (
-    
-      
-    <div className="update">
-      <form id="update" className="update-form" onSubmit={handleDelete}>
+    <div className="delete">
+      <form id="delete" className="delete-form" onSubmit={handleDelete}>
       <label className="htmlForm" id="email">Email</label>
         <input
           type="email"
@@ -57,4 +52,4 @@ function FormUpdate () {
   );
 }
   
-export default FormUpdate;
+export default FormDelete;

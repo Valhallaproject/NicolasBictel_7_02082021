@@ -3,8 +3,6 @@ import axios from 'axios';
 import './Banner.css'
 
 const Banner = () =>  {
-
-
     
     const [banner, setBanner] = useState()
     const user = JSON.parse(localStorage.getItem('user'));
@@ -26,15 +24,11 @@ const Banner = () =>  {
         })
         
     },)  
-    const handleAddImage = () => {
-        
-    }
 
     return(
         
         <div className="banner">
             {banner}
-            <button onclick={handleAddImage}>Ajouter une image</button>
         </div>
     )  
 };

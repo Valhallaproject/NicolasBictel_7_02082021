@@ -12,17 +12,27 @@
 .button{
     text-align: center;
 }
-.ModProfile{
+.DelProfile{
     cursor: pointer;
     padding: 10px;
     border-radius: 1vh;
-    margin-top: 0.5vh;
+    margin: 0.5vh;
     background-color: #082044;
     color: #fff;
     font-weight: bold;
     border: none;
-    
 }
+.ModProfile{
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 1vh;
+    margin: 0.5vh;
+    background-color: #082044;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+}
+
 #close{
     float: left;
 }

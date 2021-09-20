@@ -18,6 +18,7 @@ function PhotoUser () {
         .then((response) =>{
             for (let i = 0; i < response.data.length; i++) {
                 if (response.data[i].id === user) {
+                console.log(response.data[i].photo);
                 setKey(response.data[i].id)
                 setUsers(response.data[i].firstName[0])
                 console.log(response.data[i].firstName[0])

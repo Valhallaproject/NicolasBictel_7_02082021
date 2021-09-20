@@ -15,11 +15,13 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-validator": "^6.12.1",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.3",
     "mysql2": "^2.3.0",
     "password-validator": "^5.1.1",
     "path": "^0.12.7",
+    "save": "^2.4.0",
     "secure-password-validator": "^1.0.2",
     "sequelize": "^6.6.5",
     "uuid": "^8.3.2"
