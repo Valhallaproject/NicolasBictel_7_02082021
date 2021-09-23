@@ -5,37 +5,32 @@ import './Photo-profile.css';
 
 function PhotoProfile () {
     const token = localStorage.getItem("accessToken");
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = (localStorage.getItem('user'));
     const [ users, setUsers ] = useState();
-    const [ key, setKey] = useState();
     
     useEffect(() => {
-         axios.get('http://localhost:3000/api/user/allUser',{
-            headers:{
-                "Content-Type": 'application/json',
-                "Authorization": token
+         axios.get('http://localhost:3000/api/user/userId', {
+                params:{
+                    id : user
+                } 
+            },
+            { 
+                headers:{
+                    "Content-Type": 'application/json',
+                    "Authorization": token
+                } 
             }
-        })
+        )
         .then((response) =>{
-            for (let i = 0; i < response.data.length; i++) {
-                //const photo = response.data[i].photo
-                if (response.data[i].id === user ) {
-                    setKey(response.data[i].id);
-                    setUsers(response.data[i].firstName[0]);
-                    
-                }else{
-                    //setUsers(photo)
-                    
-                }
-            }
+            console.log(response.data.firstName);
+            //for (let i = 0; i < response.data.length; i++) {
+                    setUsers(response.data.firstName[0]);
+                
+            //}
         })
     },[token, user]);
-
-
-          
-
     return(
-        <p className="photoProfile" key={key}>{users}</p>
+        <p className="photoProfile" >{users}</p>
     )  
 };
 export default PhotoProfile

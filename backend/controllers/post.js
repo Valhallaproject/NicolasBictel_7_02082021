@@ -6,23 +6,29 @@ exports.addPost = (req, res) => {
   if (!req.body.content) {
       return res.status(400).json({ error: "Aucun contenu" });
   }
-
   const post = {
       content: req.body.content,
+      userId : req.body.userId
   };
-  Post.create(post)
+  db.posts.create(post)
       .then(() => res.status(201).json({ message: "Post enregistré" }))
       .catch(error => res.status(400).json({ error }));
 };
 
 exports.getAllPost= (req, res,) => {
-    Post.findAll()
-      .then(sauces => res.status(200).json(sauces))
+    db.posts.findAll({
+        include: [
+            {
+                model: db.users,
+            }
+        ]
+    })
+      .then(posts => res.status(200).json(posts))
       .catch(error => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res) => {
-    Post.findOne({    
+    db.posts.findOne({    
         where : {id : req.body.id}
     })
     .then(post => {

@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './index.css';
-import Log from './Pages/Log';
-import Accueil from './Pages/Accueil';
-import Profile from './Pages/Profile'
+import Log from './pages/Log';
+import Accueil from './pages/Accueil';
+import Profile from './pages/Profile'
 import axios from 'axios';
 
 

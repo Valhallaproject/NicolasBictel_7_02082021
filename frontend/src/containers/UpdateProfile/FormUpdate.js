@@ -16,22 +16,23 @@ function FormUpdate () {
     "photo": photo,
     "banner": banner
 }
+
   const handleUpdate = (e) => {
     e.preventDefault();
         axios.put('http://localhost:3000/api/user/update', {data: data},{
+          mode: 'no-cors',
           headers:{
-            "Content-Type": 'application/json',
+            //"Content-Type": 'multipart/form-data',
+            "accept": "applicacation/json",
             "Authorization": token
           }
         })
         .then((response)=>{
             if (response.status === 200) {
                 console.log(response);
-                
             }                
-                        
         })
-         
+        window.location.reload();
        
   }
   return (
@@ -71,8 +72,8 @@ function FormUpdate () {
           id="Banner"
           name="Banner"
           accept="image/*"
-          onChange={(e) => setBanner(e.target.value)}
-          value={banner}
+          onChange={(e) => setBanner(e.target.files[0].name)}
+          file={banner}
         />
         <br/>
         <input type="submit" value="Modifier"  className="button"/>

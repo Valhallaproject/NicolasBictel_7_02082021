@@ -21,6 +21,10 @@
     margin: 0;
     float: left;
 }
+.postName{
+    color: red;
+    font-weight: bold;
+}
 .line{
     width: 100%;
     height: 1px;

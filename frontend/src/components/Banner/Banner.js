@@ -8,22 +8,22 @@ const Banner = () =>  {
     const user = JSON.parse(localStorage.getItem('user'));
     const token = localStorage.getItem('accessToken');
     useEffect(() => {
-        axios.get('http://localhost:3000/api/user/allUser',{
+        axios.get('http://localhost:3000/api/user/userId',{
+            params: {
+                id: user
+            }
+        },{ 
             headers : {
                 "Content-Type": 'application/json',
                 "Authorization": token
             },
         })
         .then((response) =>{
-            for (let i = 0; i < response.data.length; i++) {
-                if (response.data[i].id === user) {
-                    let banner= response.data[i].banner;
+                    let banner= response.data.banner;
                     setBanner(banner)
-                }
-            } 
         })
         
-    },)  
+    },[token, user]); 
 
     return(
         

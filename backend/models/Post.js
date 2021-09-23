@@ -1,22 +1,30 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/sequelize-config');
+'use strict'
 
-const post = sequelize.define('post', {
-    
-    content: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        required: true
-    },
-    media: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-});
+module.exports = (sequelize, DataTypes) => {
+    const Posts = sequelize.define('post', {
+        id:{
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        content: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            required: true
+        },
+        media: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        userId: {
+            type: DataTypes.INTEGER,
+        }
+    })
 
-// Création de la table 'posts'
-post.sync()
+    Posts.sync()
     .then(() => console.log("Table post créé"))
     .catch(error => console.log(error));
 
-module.exports = post;
+    return Posts;
+
+}

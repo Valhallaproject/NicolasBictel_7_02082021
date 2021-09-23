@@ -4,8 +4,9 @@ const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
 const db = require('../config/sequelize-config');
 const mysql = require("mysql2");
-const user = require('../models/User');
 const fs = require('fs'); 
+
+const user = db.users
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -47,7 +48,7 @@ exports.signup = (req, res, next) => {
     if(schemaPassword.validate(password)) {
     bcrypt.hash(password, 10)    //we hash the password
     .then(hash => {
-      const user = new User({
+      const user = db.users.build({
         email: email,    
         firstName : firstName,
         lastName: lastName,
@@ -56,7 +57,7 @@ exports.signup = (req, res, next) => {
       user.save()    //we save the data in the database
         .then(() => res.status(201).json({userId: user.id,
           token: jwt.sign(
-            { userId: user.id },
+            { userI: user.id },
             process.env.TOKEN,
             { expiresIn: '24h' },
           )}))//{ message: 'Utilisateur créé !' }
@@ -71,7 +72,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   const email = (req.body.email);
   const password = (req.body.password);
-  User.findOne({ where: { email: email }})
+  user.findOne({ where: { email: email }})
     .then(user => {
       if (!user) {
         return res.status(200).json({ errors : "Utilisateur non trouvé !"});
@@ -103,7 +104,7 @@ exports.login = (req, res, next) => {
 exports.delete = (req, res) => {
   const email = (req.body.email);
   const password = (req.body.password);
-  User.findOne({ where: { email: email }})
+  user.findOne({ where: { email: email }})
     .then(user => {
       if (!user) {
         return res.status(200).json({ error: 'Utilisateur non trouvé !'});
@@ -125,16 +126,18 @@ exports.delete = (req, res) => {
 };
 //AllUserProfile
 exports.allUserProfile =  ( req, res, next) => {
-  User.findAll( 
-     db.data
+  user.findAll( 
+     db.users
   )
       .then(users => res.status(200).json(users))
       .catch(error => res.status(400).json({ error }));
 };
 //OneUserProfile
 exports.userProfile = (req, res,) => {
-      User.findOne({ 
-         where : {id: req.body.id}
+      user.findOne({ 
+         where : {
+           id: req.query.id,
+         }
       })
     .then(user => res.status(200).json(user))
     .catch(error => res.status(400).json({ error }));
@@ -153,7 +156,7 @@ exports.updateProfile = (req, res, next) => {
       photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
       banner: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     } : { ...req.body.data };
-  User.update({
+  user.update({
     firstName: firstName ? firstName: user.firstName,
     lastName: lastName ? lastName: user.lastName,
     photo: photo ? photo: user.photo,

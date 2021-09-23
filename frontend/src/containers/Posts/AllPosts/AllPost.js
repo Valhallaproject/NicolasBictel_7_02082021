@@ -5,7 +5,7 @@ import './PostList.css'
 
 function AllPost (){
     const [ posts, setPosts] = useState([]);
-    const token = localStorage.getItem("accessToken");   
+    const token = localStorage.getItem("accessToken"); 
     useEffect(() => {
         axios.get('http://localhost:3000/api/post/allPost', {
         headers:{
@@ -15,10 +15,11 @@ function AllPost (){
         })
         .then((response) =>{
             setPosts(response.data)
+            console.log(response.data);
         })
     },[token]);
     return(
-        <div className="feed">
+        <div className="feed" >
             {posts ? <PostList posts={posts} /> : posts}
         </div>
     )

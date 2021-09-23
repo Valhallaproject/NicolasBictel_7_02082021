@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../containers/Headers/Header"
-import Publication from "../containers/Posts/AddPost.js"
-import AllPost from "../containers/Posts/AllPost"
+import Publication from "../containers/Posts/AllPosts/AddPost.js"
+import AllPost from "../containers/Posts//AllPosts/AllPost"
 
 
 function Accueil  () {

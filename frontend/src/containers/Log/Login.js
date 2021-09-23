@@ -22,7 +22,7 @@ const Login = () => {
     })
       .then(response => {
         if (response.data) {
-          TokenService.setUser(response.data.userId);
+          TokenService.setUser(response.data.userId, response.data.firstName);
           console.log(response.data)
         }
         if (response.data.errors){
