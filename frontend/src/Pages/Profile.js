@@ -8,7 +8,7 @@ import LogiqueDelete from "../containers/DeleteProfile/LogiqueDelete";
 import DeleteProfile from "../containers/DeleteProfile/DeleteModal";
 import LogiqueUpdate from "../containers/UpdateProfile/LogiqueUpdate";
 import UpdateProfile from "../containers/UpdateProfile/UpdateModal";
-
+import AllPostsUser from "../containers/Posts/UserPosts/AllPostsUser"
 
 function Profile () { 
     const user = JSON.parse(localStorage.getItem('user'))
@@ -78,6 +78,7 @@ function Profile () {
                     Modifier mon profile
                 </button>
             </div>
+            <AllPostsUser/>
         </div>
     ) 
     

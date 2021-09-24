@@ -23,10 +23,7 @@ function PhotoProfile () {
         )
         .then((response) =>{
             console.log(response.data.firstName);
-            //for (let i = 0; i < response.data.length; i++) {
                     setUsers(response.data.firstName[0]);
-                
-            //}
         })
     },[token, user]);
     return(

@@ -23,8 +23,22 @@ exports.getAllPost= (req, res,) => {
             }
         ]
     })
-      .then(posts => res.status(200).json(posts))
-      .catch(error => res.status(400).json({ error }));
+    .then(posts => res.status(200).json(posts))
+    .catch(error => res.status(400).json({ error }));
+};
+exports.getPostUser = (req, res) => {
+    db.posts.findAll({
+        where : { 
+            userId: req.query.userId
+        },
+        include: [
+            {
+                model: db.users,
+            }
+        ]
+    })
+    .then(posts => res.status(200).json(posts))
+    .catch(error => res.status(400).json({ error }));
 };
 
 exports.deletePost = (req, res) => {
