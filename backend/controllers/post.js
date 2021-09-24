@@ -1,5 +1,3 @@
-const Post = require('../models/Post')
-const User = require('../models/User')
 const db = require('../config/sequelize-config');
 
 exports.addPost = (req, res) => {
