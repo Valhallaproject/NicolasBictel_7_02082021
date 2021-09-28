@@ -33,10 +33,11 @@ db.users = require('../models/User.js')(sequelize, Sequelize);
 db.posts = require('../models/Post.js')(sequelize, Sequelize);
 db.comments = require('../models/Comments.js')(sequelize, Sequelize);
 
-db.posts.belongsTo(db.users);
-db.users.hasMany(db.posts);
-db.comments.belongsTo(db.posts)
-db.posts.hasMany(db.comments);
-db.users.hasMany(db.comments);
+db.posts.belongsTo(db.users,{constraints: true,onDelete: "CASCADE",}),
+db.users.hasMany(db.posts,{constraints: true,onDelete: "CASCADE",});
+db.comments.belongsTo(db.posts,{constraints: true,onDelete: "CASCADE",})
+db.comments.belongsTo(db.users,{constraints: true,onDelete: "CASCADE",})
+db.posts.hasMany(db.comments,{constraints: true,onDelete: "CASCADE",});
+db.users.hasMany(db.comments,{constraints: true,onDelete: "CASCADE",});
 
 module.exports = db;

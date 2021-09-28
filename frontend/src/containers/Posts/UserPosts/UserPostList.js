@@ -1,4 +1,6 @@
 import DeletePost from "../../../components/Button/DeletePost"
+import AddComment from "../Comments/AddComment"
+import DisplayComments from "../Comments/DisplayComments"
 
 const UserPostList = ( {posts}) => {
     return [
@@ -13,6 +15,13 @@ const UserPostList = ( {posts}) => {
                     <p className="postContent">
                         {post.content }
                     </p>
+                    <div>
+                        <AddComment id={post.id} user={post.userId}/>
+                    </div>
+                    <div className="line"></div><br/>
+                    <div>
+                        <DisplayComments postId={post.id}/>
+                    </div>
                 </li>
             )).reverse()}
         </>

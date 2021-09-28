@@ -55,3 +55,20 @@ exports.deletePost = (req, res) => {
         }));
     })
 };
+
+exports.deletePostUser = (req, res) => {
+    db.posts.findAll({    
+        where : {userId : req.body.userId},
+    })
+    .then(post => {
+        post.destroy({   
+            userId: req.params.userId
+        })
+        .then(() => res.status(200).json({
+            message: 'Posts supprimée !'
+        }))
+            .catch(error => res.status(400).json({
+            error
+        }));
+    })
+};

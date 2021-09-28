@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState} from "react";
 import TokenService from "../../services/token.service";
 import './Login.css';
 
@@ -22,8 +22,7 @@ const Login = () => {
     })
       .then(response => {
         if (response.data) {
-          TokenService.setUser(response.data.userId, response.data.firstName);
-          console.log(response.data)
+          TokenService.setUser(response.data.userId);
         }
         if (response.data.errors){
           error.innerHTML = response.data.errors;
@@ -33,12 +32,10 @@ const Login = () => {
         
         try {
           const { token } = response.data;
-          console.log(token);
           window.localStorage.setItem("accessToken", token);
           JSON.stringify({ token }, null, 2) 
-          console.log(response.data.userId);
-          console.log(response.data.token);
-            
+          console.log(response.data);
+
           }catch (err) {
           }
       }) 

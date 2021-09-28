@@ -17,9 +17,9 @@
       return JSON.parse(localStorage.getItem("user"));
     }
   
-    export const setUser = (userId,token) => {
+    export const setUser = (userId,token, ) => {
       console.log(JSON.stringify(userId, token));
-      localStorage.setItem("user", JSON.stringify(userId,  token));
+      localStorage.setItem("user", JSON.stringify(userId, token));
     }
   
     const removeUser = () => {

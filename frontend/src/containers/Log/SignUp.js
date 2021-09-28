@@ -42,6 +42,9 @@ function SignUp () {
           console.log(token);
           window.localStorage.setItem("accessToken", token);
           JSON.stringify({ token }, null, 2) 
+          console.log(response.data.userId);
+          console.log(response.data.token);
+            
           
         } catch (err) {
         }

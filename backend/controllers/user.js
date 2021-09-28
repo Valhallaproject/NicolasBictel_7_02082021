@@ -7,6 +7,7 @@ const mysql = require("mysql2");
 const fs = require('fs'); 
 
 const user = db.users
+const post = db.posts
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -48,7 +49,7 @@ exports.signup = (req, res, next) => {
     if(schemaPassword.validate(password)) {
     bcrypt.hash(password, 10)    //we hash the password
     .then(hash => {
-      const user = db.users.build({
+      const user = db.users.create({
         email: email,    
         firstName : firstName,
         lastName: lastName,
@@ -84,6 +85,7 @@ exports.login = (req, res, next) => {
           }
           try{
             res.status(200).json({
+            userRole: user.admin,
             userId: user.id,
             token: jwt.sign(
               { userId: user.id },
@@ -115,7 +117,17 @@ exports.delete = (req, res) => {
           return res.status(200).json({ error: 'Mot de passe incorrect !' });
         } 
         else {
-        User.destroy({ where: { email: email } })
+        user.destroy({ 
+          where: { 
+            email: email,
+           },
+          include: [
+            {
+                model: db.comments,
+                model: db.posts
+            }
+          ]
+         })
             .then(() => res.status(200).json({ message: "Utilisateur supprimé de la base de données" }))
             .catch(error => res.status(500).json({ error }));
       }

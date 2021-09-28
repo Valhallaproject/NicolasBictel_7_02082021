@@ -36,6 +36,11 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        admin: { 
+            type: DataTypes.STRING, 
+            allowNull: true, 
+            default : 'user'
+        },
     });
 
     Users.sync()

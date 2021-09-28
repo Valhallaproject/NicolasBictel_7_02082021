@@ -64,7 +64,7 @@ function Profile () {
             <div>
                 <p className="userName">{userName}</p>
             </div>
-            <div className="button">
+            <div className="buttonUser">
                 <button
                     className="DelProfile"
                     onClick={toggleDelete}

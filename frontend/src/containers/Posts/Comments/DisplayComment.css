@@ -1,0 +1,36 @@
+
+.feedComment{
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+.commentItem{
+    margin-top: 10px;
+}
+.commentUsername{
+    float: right;
+    margin: 0;
+    font-size: 12px;
+    color: gray;
+}
+.commentName{
+    font-weight: bold;
+}
+.commentContent{
+    float: right;
+    margin: 0;
+    font-weight: bold;
+}
+.buttonCdisplay{
+    float: left;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
+.buttonCdisplay img{
+    width: 20px;
+    cursor: pointer;
+}
+.buttonChide{
+    display: none;
+}

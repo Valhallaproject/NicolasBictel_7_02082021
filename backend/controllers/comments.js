@@ -13,9 +13,24 @@ exports.addComment = (req, res) => {
     db.comments.create(comment)
         .then(() => res.status(201).json({ message: "Commentaire enregistré" }))
         .catch(error => res.status(400).json({ error }));
-  };
+};
 
-  exports.getAllComment= (req, res,) => {
+exports.getCommentPost= (req, res) => {
+    db.comments.findAll({
+        where:{
+            postId: req.query.postId
+        },
+        include: [
+            {
+                model: db.users,
+            }
+        ]
+    })
+    .then(comments => res.status(200).json(comments))
+    .catch(error => res.status(400).json({ error }));
+};
+
+exports.getAllComment= (req, res,) => {
     db.comments.findAll({
         include: [
             {
@@ -24,7 +39,7 @@ exports.addComment = (req, res) => {
             }
         ]
     })
-    .then(posts => res.status(200).json(posts))
+    .then(comments => res.status(200).json(comments))
     .catch(error => res.status(400).json({ error }));
 };
 
