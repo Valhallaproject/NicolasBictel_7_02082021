@@ -1,6 +1,7 @@
 import React from "react";
 import TokenService from "../../services/token.service";
 import logoNav from "../../images/icon-left-font.png";
+import logoMobile from "../../images/icon.svg";
 import iconHome from "../../images/icon-home.png";
 import iconUser from "../../images/icon-user.png";
 import iconNotif from "../../images/icon-notification.png";
@@ -25,7 +26,8 @@ function Header (){
     return(
         <div className="nav">
             <div className="logo-header">
-                <img src={logoNav} alt="logo groupomania"/>
+                <img src={logoNav} className="logoDesktop" alt="logo groupomania"/>
+                <img src={logoMobile} className="logoMobile" alt="logo groupomania"/>
             </div>
             <div className="navItem">
                 <div className="icon-navItem"> 

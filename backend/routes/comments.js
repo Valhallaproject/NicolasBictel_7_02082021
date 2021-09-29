@@ -9,5 +9,6 @@ router.post('/addComment', commentCtrl.addComment);
 router.get('/getAll',  commentCtrl.getAllComment);
 router.get('/postId',  commentCtrl.getCommentPost);
 router.delete('/delete', commentCtrl.deleteComment);
+router.delete('/deleteUser', commentCtrl.deleteCommentUser);
 
 module.exports = router;

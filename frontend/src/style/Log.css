@@ -27,6 +27,9 @@
     width: 60%;
     margin: 0 auto;
 }
+.container img{
+    display: none;
+}
 .forget{
     text-align: center;
 }
@@ -43,4 +46,37 @@
 }
 .forget li:hover{
     font-weight: 600;
+}
+
+@media screen and (max-width: 767px){
+    .content{
+        display: none;
+    }
+    .contenu{
+        width: 100%;
+    }
+    .container{
+        width: 80%;
+        padding: 0;
+    }
+    .container img{
+        display: block;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .connection {
+       margin-top: -50px;
+    }
+    .connection h1{
+        font-size: 29px;
+    }
+    .inscription{
+        margin-top: -50px
+    }
+    .inscription h1{
+        font-size: 29px;
+    }
+    .forget{
+        font-size: 12px;
+    }
 }

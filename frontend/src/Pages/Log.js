@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import logo from "../images/icon-white.png";
 import Login from "../containers/Log/Login";
 import SignUp from "../containers/Log/SignUp";
+import logoMobile from '../images/icon-black.png'
 import '../style/Log.css';
 
 function Log(props) {
@@ -33,6 +34,7 @@ function Log(props) {
           </div>
         <div className="contenu">
           <div className="container">
+            <img src={logoMobile} className="logoMobile" alt="logo groupomania"/>
             {signUpModal && <SignUp />}
             {loginModal && <Login />}
           </div>

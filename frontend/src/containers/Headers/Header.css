@@ -12,8 +12,13 @@
     width: 30%;
     text-align: center;
 }
-.logo-header img{
+.logoDesktop{
     width: 75%;
+}
+.logoMobile{
+    display: none;
+    width: 50%;
+    margin-top: 10px;
 }
 .icon-navItem{
     width: 25%;
@@ -21,7 +26,7 @@
     text-align: center;
 }
 .icon-not{
-    width: 15%;
+    width: fit-content;
     padding-top: 25px;
     text-align: center;
     line-height: 40px;
@@ -65,3 +70,47 @@
     cursor: pointer;
 }
 
+@media screen and (min-width: 2560px){
+    .logo-header img{
+        width: 45%;
+    }
+    .icon-navItem{
+        height: 65%;
+    }
+    .icon-not{
+        height: 65%;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .logo-header{
+        line-height: 120px;
+    }
+    .icon-navItem{
+        height: 42%;
+    }
+    .icon-not{
+        height: 42%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .logo-header{
+        line-height: 100px;
+    }
+    .icon-navItem{
+        height: 50%;
+    }
+    .icon-not{
+        height: 50%;
+    }
+}
+
+@media screen and (max-width: 630px){
+    .logoDesktop{
+        display: none;
+    }
+    .logoMobile{
+        display: block;
+    }
+}
