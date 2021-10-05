@@ -6,7 +6,7 @@ function FormUpdate () {
   const user = JSON.parse(localStorage.getItem('user'));
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [photo, setPhoto] = useState(null)
+  const [photo, setPhoto] = useState("file")
   const [banner, setBanner] = useState("");
 
   const data = {
@@ -22,7 +22,7 @@ function FormUpdate () {
         axios.put('http://localhost:3000/api/user/update', {data: data},{
           mode: 'no-cors',
           headers:{
-            //"Content-Type": 'multipart/form-data',
+            "Content-Type": 'application/json',
             "accept": "applicacation/json",
             "Authorization": token
           }
@@ -37,7 +37,7 @@ function FormUpdate () {
   }
   return (
     <div className="update">
-      <form id="update" className="update-form" onSubmit={handleUpdate}>
+      <form id="update" className="update-form"  onSubmit={handleUpdate}>
       <label className="htmlForm" id="firstName">Prénom</label>
         <input
           type="text"

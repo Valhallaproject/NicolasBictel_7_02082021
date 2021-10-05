@@ -22,8 +22,15 @@ function PhotoProfile () {
             }
         )
         .then((response) =>{
-            console.log(response.data.firstName);
-                    setUsers(response.data.firstName[0]);
+            if(response.data.photo === null){
+                console.log(response.data.firstName);
+                setUsers(response.data.firstName[0]); 
+            }else{
+                setUsers(response.data.photo)
+            }
+                              
+            
+            
         })
     },[token, user]);
     return(

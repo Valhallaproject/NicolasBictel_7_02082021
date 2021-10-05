@@ -20,6 +20,7 @@ const DisplayComments =  (props) => {
         })
         .then((response) =>{
             setCommentPost(response.data)
+            console.log(response.data);
         })
     },[token, id]);
 

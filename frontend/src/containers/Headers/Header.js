@@ -1,12 +1,12 @@
 import React from "react";
 import TokenService from "../../services/token.service";
-import logoNav from "../../images/icon-left-font.png";
-import logoMobile from "../../images/icon.svg";
-import iconHome from "../../images/icon-home.png";
-import iconUser from "../../images/icon-user.png";
-import iconNotif from "../../images/icon-notification.png";
-import iconMessage from "../../images/icon-message.png";
-import iconDeconnect from "../../images/icon-deconnect.png";
+import logoNav from "../../image/icon-left-font.png";
+import logoMobile from "../../image/icon.svg";
+import iconHome from "../../image/icon-home.png";
+import iconUser from "../../image/icon-user.png";
+import iconNotif from "../../image/icon-notification.png";
+import iconMessage from "../../image/icon-message.png";
+import iconDeconnect from "../../image/icon-deconnect.png";
 import './Header.css';
 
 function Header (){

@@ -15,15 +15,14 @@ exports.addPost = (req, res) => {
 
 exports.getAllPost= (req, res,) => {
     db.posts.findAll({
-        include: [
-            {
-                model: db.users,
-            }
+        include:[
+            {model: db.users}
         ]
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => res.status(400).json({ error }));
 };
+
 exports.getPostUser = (req, res) => {
     db.posts.findAll({
         where : { 
@@ -41,10 +40,17 @@ exports.getPostUser = (req, res) => {
 
 exports.deletePost = (req, res) => {
     db.posts.findOne({    
-        where : {id : req.body.id}
+        where : {id : req.body.id},
+        include: [
+            {
+                model: db.comments,
+                model: db.users
+            }
+          ]
     })
     .then(post => {
         post.destroy({   
+            
             id: req.params.id
         })
         .then(() => res.status(200).json({
@@ -56,19 +62,3 @@ exports.deletePost = (req, res) => {
     })
 };
 
-exports.deletePostUser = (req, res) => {
-    db.posts.findAll({    
-        where : {userId : req.body.userId},
-    })
-    .then(post => {
-        post.destroy({   
-            userId: req.params.userId
-        })
-        .then(() => res.status(200).json({
-            message: 'Posts supprimée !'
-        }))
-            .catch(error => res.status(400).json({
-            error
-        }));
-    })
-};

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import logo from "../images/icon-white.png";
+import logo from "../image/icon-white.png";
 import Login from "../containers/Log/Login";
 import SignUp from "../containers/Log/SignUp";
-import logoMobile from '../images/icon-black.png'
+import logoMobile from '../image/icon-black.png'
 import '../style/Log.css';
 
 function Log(props) {

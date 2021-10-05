@@ -1,5 +1,4 @@
 'use strict'
-
 module.exports = (sequelize, DataTypes) => {
     const Comments = sequelize.define('comment', {
         id:{
@@ -18,10 +17,19 @@ module.exports = (sequelize, DataTypes) => {
         },
         postId: {
             type: DataTypes.INTEGER,
+            references: {
+                model: 'Posts',
+                key: 'id'
+            },
         },
         userId: {
             type: DataTypes.INTEGER,
-        }
+            references: {
+                model: 'Users',
+                key: 'id'
+              },
+        },
+        
     })
 
     Comments.sync()
@@ -31,3 +39,4 @@ module.exports = (sequelize, DataTypes) => {
     return Comments;
 
 }
+

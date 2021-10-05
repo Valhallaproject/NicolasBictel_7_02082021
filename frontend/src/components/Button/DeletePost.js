@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import createHistory from 'history/createBrowserHistory'
-import iconRemove from "../../images/icon-remove.png";
+import iconRemove from "../../image/icon-remove.png";
 
 const history = createHistory();
 const token = localStorage.getItem('accessToken')

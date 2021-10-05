@@ -60,19 +60,3 @@ exports.deleteComment = (req, res) => {
     })
 };
 
-exports.deleteCommentUser = (req, res) => {
-    db.comments.findAll({
-        where:{
-            userId: req.body.userId
-        }
-    })
-    .then(comment => {
-        comment.s()
-        .then(() => res.status(200).json({
-            message: 'Commentaire supprimée !'
-        }))
-            .catch(error => res.status(400).json({
-            error
-        }));
-    })
-};

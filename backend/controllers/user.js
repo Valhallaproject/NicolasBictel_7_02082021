@@ -49,7 +49,7 @@ exports.signup = (req, res, next) => {
     if(schemaPassword.validate(password)) {
     bcrypt.hash(password, 10)    //we hash the password
     .then(hash => {
-      const user = db.users.create({
+      const user = db.users.build({
         email: email,    
         firstName : firstName,
         lastName: lastName,
@@ -58,7 +58,7 @@ exports.signup = (req, res, next) => {
       user.save()    //we save the data in the database
         .then(() => res.status(201).json({userId: user.id,
           token: jwt.sign(
-            { userI: user.id },
+            { userId: user.id },
             process.env.TOKEN,
             { expiresIn: '24h' },
           )}))//{ message: 'Utilisateur créé !' }
@@ -106,7 +106,9 @@ exports.login = (req, res, next) => {
 exports.delete = (req, res) => {
   const email = (req.body.email);
   const password = (req.body.password);
-  user.findOne({ where: { email: email }})
+  user.findOne({ where: { email: email },
+    
+  })
     .then(user => {
       if (!user) {
         return res.status(200).json({ error: 'Utilisateur non trouvé !'});
@@ -121,13 +123,8 @@ exports.delete = (req, res) => {
           where: { 
             email: email,
            },
-          include: [
-            {
-                model: db.comments,
-                model: db.posts
-            }
-          ]
-         })
+          
+        })
             .then(() => res.status(200).json({ message: "Utilisateur supprimé de la base de données" }))
             .catch(error => res.status(500).json({ error }));
       }
@@ -162,12 +159,17 @@ exports.updateProfile = (req, res, next) => {
   const lastName = (req.body.data.lastName);
   const banner = (req.body.data.banner);
   
-  const userObject = req.file ?
+  const userObject= req.file ?
     {
       ...JSON.parse(req.body.data.user),
       photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-      banner: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      
     } : { ...req.body.data };
+  /*const userBanner= req.file ?
+    {
+      ...JSON.parse(req.body.dat.user),
+      banner: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    } : { ...req.body.dat };*/
   user.update({
     firstName: firstName ? firstName: user.firstName,
     lastName: lastName ? lastName: user.lastName,
