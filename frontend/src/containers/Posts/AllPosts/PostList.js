@@ -2,10 +2,13 @@ import DeletePost from "../../../components/Button/DeletePost"
 import AddComment from "../Comments/AddComment"
 import DisplayComments from "../Comments/DisplayComments"
 
-const PostList = ( {posts}) => {
-    return [
+const PostList = ( {posts}) => { 
+ 
+    return ( 
         <>
             {posts.map((post) => (
+        
+                
                 <li className="postItem" key= {post.id}>
                     <div className="headerPost">
                         <p className="postUsername">Publié par<span className="postName"> {post.user.firstName} {post.user.lastName}</span></p><br/> 
@@ -14,9 +17,12 @@ const PostList = ( {posts}) => {
                     <div className="line"></div><br/>
                     
                     <p className="postContent">
-                        {post.content }
-                    </p>
-                    
+                        {post.content }<br/>
+                        
+                    </p><br/><br/>
+                    <div className="media">
+                        <img type="image" src={post.media} alt=""/>
+                    </div>
                     <div>
                         <AddComment id={post.id} user={post.userId}/>
                     </div>
@@ -27,7 +33,7 @@ const PostList = ( {posts}) => {
                 </li>
             )).reverse()}
         </>
-    ]
+    )
 }
 export default PostList
 

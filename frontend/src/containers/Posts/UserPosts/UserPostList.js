@@ -14,7 +14,12 @@ const UserPostList = ( {posts}) => {
                     <div className="line"></div><br/>
                     <p className="postContent">
                         {post.content }
-                    </p>
+                        
+                    </p><br/><br/>
+                    <div className="media">
+                    <img src={post.media} alt=""/>
+                    </div>
+                    <br/>
                     <div>
                         <AddComment id={post.id} user={post.userId}/>
                     </div>

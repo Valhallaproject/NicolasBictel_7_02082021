@@ -1,14 +1,93 @@
 .banner{
     width: 70%;
-    height: 150px;
-    border: 2px solid #082044;
+    height: 180px;
+    border: 4px solid #082044;
     border-radius: 30px;
     background-color: #fff;
     margin: 0 auto;
     text-align: center;
+    cursor: pointer;
+}
+.banner img{
+    object-fit: cover;
+    width: 100%;
+    height: 180px;
+    border-radius: 27px;
 }
 .banner .addImage{
     cursor: pointer;
     border: none;
     background-color: #fff;
+}
+
+.contentUpdateBanner{
+    width: 100vw;
+    position: absolute;
+    margin-top: 5vh;
+    z-index: 1;
+    left: 0;
+}
+.Update{
+    width: 50%;
+    height: min-content;
+    border-radius: 15px;
+    border: 5px solid red;
+    background-color: #fff;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.close{
+    margin-top: 2%;
+    margin-right: 2%;
+    float: right;
+    width: 30px;
+    height: 30px;
+    border: 4px solid red;
+    border-radius: 15px;
+    cursor: pointer;
+}
+h1{
+    color: #082044;
+    font-size: 40px;
+    float: left;
+    margin: 0 0 0 0 5%
+}
+.htmlForm{
+    color: red;
+    float: left;
+    margin-left: 5%;
+    font-size: 17px;
+    margin-top: 25px;
+    font-weight: 600;
+}
+.update-form{
+    text-align: center;
+}
+.Update input{
+    
+    height: 50px;
+    width: 90%;
+    padding-left: 20px;
+    font-size: 17px;
+    background-color: #fff;
+}
+.update .button{
+    text-align: center;
+    margin-top: 60px;
+    font-weight: 600;
+    font-size: 22px;
+    text-align: center;
+    color: #FFFFFF;
+    background-color: #082044;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 50%;
+}
+.error{
+    color: red;
+    font-size: 20px;
+    font-weight: 600;
 }

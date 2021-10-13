@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
+import addImage from "../../image/icon-left-font.png"
 import './Banner.css'
+import LogiqueBanner from "./LogiqueBanner";
+import UpdateBanner from "./BannerModale";
 
 const Banner = () =>  {
     
@@ -19,16 +22,27 @@ const Banner = () =>  {
             },
         })
         .then((response) =>{
-                    let banner= response.data.banner;
-                    setBanner(banner)
+            if(response.data.banner === null){
+                const image = addImage
+                setBanner(image); 
+            }else{
+                const photo = response.data.banner
+                console.log(response.data.banner);
+                setBanner(photo);
+                console.log(photo);
+            };
         })
         
     },[token, user]); 
 
+    const {displayBanner, toggleBanner} = LogiqueBanner();
     return(
-        
         <div className="banner">
-            {banner}
+            <UpdateBanner
+                displayBanner={displayBanner}
+                hideBanner={toggleBanner}
+            />
+            <img onClick={toggleBanner} src={banner} alt="utilisateur"/>
         </div>
     )  
 };

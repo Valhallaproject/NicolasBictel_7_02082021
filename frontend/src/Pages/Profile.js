@@ -1,14 +1,16 @@
 import React, {useState, useEffect} from "react";
 import Header from "../containers/Headers/Header"
 import axios from "axios";
-import PhotoProfile from "../components/Photos/Photo-profile";
+import PhotoProfile from "../components/Photos/Photo-profile/Photo-profile";
 import Banner from "../components/Banner/Banner"
 import '../style/profile.css'
 import LogiqueDelete from "../containers/DeleteProfile/LogiqueDelete";
 import DeleteProfile from "../containers/DeleteProfile/DeleteModal";
 import LogiqueUpdate from "../containers/UpdateProfile/LogiqueUpdate";
 import UpdateProfile from "../containers/UpdateProfile/UpdateModal";
+
 import AllPostsUser from "../containers/Posts/UserPosts/AllPostsUser"
+import Footer from "../containers/Footer/Footer";
 
 function Profile () { 
     const user = JSON.parse(localStorage.getItem('user'))
@@ -29,7 +31,7 @@ function Profile () {
             },
         })
         .then((response) =>{
-            console.log(response);
+            console.log(response.data.photo);
             let firstName = response.data.firstName;
             let lastName = response.data.lastName;
             setUserName(firstName + " " + lastName)
@@ -79,6 +81,9 @@ function Profile () {
                 </button>
             </div>
             <AllPostsUser/>
+            
+            <Footer/>
+            
         </div>
     ) 
     

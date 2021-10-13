@@ -2,6 +2,7 @@
     width: 100%;
     position: fixed;
     margin-top: 10vh;
+    z-index: 1;
 }
 .Delete{
     width: 50%;

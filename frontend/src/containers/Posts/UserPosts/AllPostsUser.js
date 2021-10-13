@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import UserPostList from './UserPostList';
+import "./AllPostUser.css"
 
 
 function PostUser ()  {

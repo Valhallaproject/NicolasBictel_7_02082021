@@ -4,8 +4,6 @@ import logoNav from "../../image/icon-left-font.png";
 import logoMobile from "../../image/icon.svg";
 import iconHome from "../../image/icon-home.png";
 import iconUser from "../../image/icon-user.png";
-import iconNotif from "../../image/icon-notification.png";
-import iconMessage from "../../image/icon-message.png";
 import iconDeconnect from "../../image/icon-deconnect.png";
 import './Header.css';
 
@@ -42,16 +40,6 @@ function Header (){
                 </div>
             </div>
             <div className="notification">
-                <div className="icon-not">
-                    <button type="submit">
-                        <img src={iconNotif} alt="logo Notification"/>
-                    </button>
-                </div>
-                <div className="icon-not">
-                    <button type="submit">
-                        <img src={iconMessage} alt="logo Message"/>
-                    </button>
-                </div>
                 <div className="icon-not">
                     <button type="submit" onClick={logout}>
                         <img src={iconDeconnect} alt="logo Déconnexion"/>

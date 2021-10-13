@@ -1,9 +1,31 @@
-.contentUpdate{
+.photoProfile{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+    background-color: white;
+    border: 5px solid #082044;
+    font-weight: bold;
+    font-size: 60px;
+    margin: 0 auto;
+    margin-top: -50px;
+    position: relative;
+}
+.photoProfile img{
+    object-fit: cover;
+    width: 100%;
+    border-radius: 50px;cursor: pointer;
+}
+.photoProfile .addImage{
+    
+    border: none;
+    background-color: #fff;
+}
+.contentUpdatePhoto{
     width: 100vw;
-    position: absolute;
-    margin-top: 5vh;
+    position: fixed;
+    margin-top: -5vh;
     z-index: 1;
-    left:0;
+    left: 0;
 }
 
 .Update{
@@ -70,3 +92,14 @@ h1{
     font-size: 20px;
     font-weight: 600;
 }
+/*label .select{
+    width: 40%;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 75px;
+    margin-left: 20px;
+    background-color: white
+}
+#Photo{
+    display: none;
+}*/

@@ -3,11 +3,14 @@ const bcrypt = require('bcrypt');    //Plugin for hashing the password
 const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
 const db = require('../config/sequelize-config');
-const mysql = require("mysql2");
-const fs = require('fs'); 
+//const mysql = require("mysql2");
+//const fs = require('fs'); 
+
 
 const user = db.users
-const post = db.posts
+//const post = db.posts
+
+const url = 'http://localhost:3000/images/'
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -153,31 +156,57 @@ exports.userProfile = (req, res,) => {
    
 };
 //UpdateProfile
-exports.updateProfile = (req, res, next) => {
-  const photo = (req.body.data.photo);
+exports.updateBanner= (req, res) => {
+    try {
+      const bannerUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+      user.update(
+        {
+          banner: bannerUrl
+        },
+        {
+          where: { id: req.body.id }
+        }
+      );
+      res.status(200).json({
+        message: "Banniére modifié"
+      });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+}
+exports.updatePhoto= (req, res) => {
+    try {
+      const photoUrl = `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+      user.update(
+        {
+          photo: photoUrl
+        },
+        {
+          where: { id: req.body.id }
+        }
+      );
+      res.status(200).json({
+        message: "Photo profile modifié"
+      });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
+}
+exports.update= (req, res) => {
   const firstName = (req.body.data.firstName);
-  const lastName = (req.body.data.lastName);
-  const banner = (req.body.data.banner);
-  
-  const userObject= req.file ?
-    {
-      ...JSON.parse(req.body.data.user),
-      photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+  const lastName = (req.body.data.lastName);      
       
-    } : { ...req.body.data };
-  /*const userBanner= req.file ?
-    {
-      ...JSON.parse(req.body.dat.user),
-      banner: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body.dat };*/
   user.update({
     firstName: firstName ? firstName: user.firstName,
     lastName: lastName ? lastName: user.lastName,
-    photo: photo ? photo: user.photo,
-    banner: banner ? banner: user.banner
   },
-  {where: { id: req.body.data.id }},
-  { ...userObject, where :{ id: req.body.data.id}})
+  {where: { id: req.body.data.id }}
+  )
     .then(() => res.status(200).json({ message: 'Profil modifié !'}))
     .catch(error => res.status(400).json({ error }));
 }
+
+
+
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import iconUser from "../../../image/icon-user.png"
 import './Photouser.css';
 
 function PhotoUser () {
@@ -18,12 +19,18 @@ function PhotoUser () {
             }
         })
         .then((response) =>{
-                setUsers(response.data.firstName[0])
+            if(response.data.photo === null){
+                setUsers(iconUser)
+            }else{
+                const photo = response.data.photo
+                console.log(response.data.photo);
+                setUsers(photo);
+            }
         })
     },[token, user]);
 
     return(
-        <p className="photoUser" >{users}</p>
+        <img className="photoUser" src={users} alt="profile"/>
     )  
 };
 export default PhotoUser
