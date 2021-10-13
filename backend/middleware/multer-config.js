@@ -4,7 +4,8 @@ const db = require('../config/sequelize-config');
 const MIME_TYPES = {    //accepted types of images
     'image.jpg' : 'jpg',
     'image/jpeg' : 'jpg',
-    'image/png' : 'png'
+    'image/png' : 'png',
+    "image.gif": "gif",
 }
 //Save location and file name
 const storage = multer.diskStorage({
