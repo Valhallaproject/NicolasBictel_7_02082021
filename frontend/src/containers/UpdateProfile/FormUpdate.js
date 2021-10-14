@@ -35,7 +35,7 @@ function FormUpdate () {
                 
                           
         )
-        //window.location.reload();117, 110, 100, 101, 102, 105, 110, 101, 100
+        window.location.reload();
        
   }
   return (

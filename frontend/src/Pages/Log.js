@@ -22,6 +22,7 @@ function Log(props) {
       LoginModal(true);
       setRegister(true);
       setLogin(null);
+      
     }
   };
     return (
@@ -45,7 +46,7 @@ function Log(props) {
                 id="login"
                 className={{signUpModal} > {register} ? register : null}
               >
-              {register && "Mot de passe oublié ?  -"}
+              {register }
               </li>
               <li
                 onClick={handleModals}

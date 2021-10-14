@@ -1,17 +1,20 @@
-import DeletePost from "../../../components/Button/DeletePost"
-import AddComment from "../Comments/AddComment"
-import DisplayComments from "../Comments/DisplayComments"
-
+import React from 'react'
+import { Link } from 'react-router-dom';
+import DeletePost from "../../../components/Button/DeletePost";
+import AddComment from "../Comments/AddComment";
+import DisplayComments from "../Comments/DisplayComments";
 const PostList = ( {posts}) => { 
- 
     return ( 
         <>
             {posts.map((post) => (
-        
                 
                 <li className="postItem" key= {post.id}>
                     <div className="headerPost">
-                        <p className="postUsername">Publié par<span className="postName"> {post.user.firstName} {post.user.lastName}</span></p><br/> 
+                        <p className="postUsername">Publié par<span> </span>  
+                            <Link to={{pathname:"/Profile-utlisateur", state:post.userId}}className="postName">
+                                {post.user.firstName} {post.user.lastName}
+                            </Link>
+                        </p><br/> 
                         <DeletePost id={post.id} user={post.userId} />
                     </div>
                     <div className="line"></div><br/>
@@ -24,7 +27,7 @@ const PostList = ( {posts}) => {
                         <img type="image" src={post.media} alt=""/>
                     </div>
                     <div>
-                        <AddComment id={post.id} user={post.userId}/>
+                        <AddComment id={post.id} user={post.userId} />
                     </div>
                     <div className="line"></div><br/>
                     <div>
@@ -38,4 +41,3 @@ const PostList = ( {posts}) => {
 export default PostList
 
 
-//

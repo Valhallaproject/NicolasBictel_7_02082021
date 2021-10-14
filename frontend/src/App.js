@@ -4,6 +4,7 @@ import './index.css';
 import Log from './pages/Log';
 import Accueil from './pages/Accueil';
 import Profile from './pages/Profile'
+import OtherUser from './pages/OtherUser'
 import axios from 'axios';
 
 
@@ -59,6 +60,7 @@ instance.interceptors.response.use((res) => {
         <Route exact path="/" component={Accueil}/>
         <Route path="/Log" component={Log}/>
         <Route path="/Profile" component={Profile}/>
+        <Route path="/Profile-utlisateur" component={OtherUser}/>
       </Switch>
     </Router>
   )

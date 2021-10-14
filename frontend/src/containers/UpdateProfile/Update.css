@@ -9,9 +9,7 @@
 .Update{
     width: 50%;
     height: min-content;
-    border-radius: 15px;
-    border: 5px solid red;
-    background-color: #fff;
+    background-color: red;
     margin: 0 auto;
     padding-bottom: 20px;
 }
@@ -33,7 +31,7 @@ h1{
     margin: 0 0 0 0 5%
 }
 .htmlForm{
-    color: red;
+    color: white;
     float: left;
     margin-left: 5%;
     font-size: 17px;

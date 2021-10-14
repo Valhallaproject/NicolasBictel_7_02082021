@@ -22,8 +22,6 @@ function PostUser ()  {
     })
         .then((response) => {
             setUserPosts(response.data)
-            console.log(response);
-
         })
     },[token, user]);
     return(

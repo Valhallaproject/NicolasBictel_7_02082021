@@ -11,6 +11,7 @@ function SignUp () {
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    window.location.replace("http://localhost:3001/Register")
     const error = document.querySelector('.error');
     axios({
       method: "post",
@@ -28,7 +29,6 @@ function SignUp () {
           console.log(response.data.userId);
         }
         if(response.data.error){
-          console.log(response)
           error.innerHTML = response.data.error;
         }
         if(response.data.message){
@@ -39,13 +39,8 @@ function SignUp () {
         }
         try {
           const { token } = response.data;
-          console.log(token);
           window.localStorage.setItem("accessToken", token);
           JSON.stringify({ token }, null, 2) 
-          console.log(response.data.userId);
-          console.log(response.data.token);
-            
-          
         } catch (err) {
         }
       })

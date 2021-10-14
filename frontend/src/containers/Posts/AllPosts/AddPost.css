@@ -65,6 +65,9 @@ label{
     line-height: 2;
     font-size: small;
 }
+label img{
+    width: 30%;
+}
 #file{
     display: none;
 }

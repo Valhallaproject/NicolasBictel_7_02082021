@@ -13,7 +13,8 @@
 .photoProfile img{
     object-fit: cover;
     width: 100%;
-    border-radius: 50px;cursor: pointer;
+    border-radius: 45px;
+    cursor: pointer;
 }
 .photoProfile .addImage{
     

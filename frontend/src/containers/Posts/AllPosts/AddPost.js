@@ -2,22 +2,22 @@ import React, { useState } from "react";
 import axios from "axios";
 import PhotoUser from '../../../components/Photos/Photo-user/Photo-user';
 import createHistory from 'history/createBrowserHistory'
+import AddImage from "../../../image/addImageWhite.png"
 import '../../../components/Photos/Photo-user/Photouser.css'
 import './AddPost.css';
 
 const Post = (e) => {
-
-    const history = createHistory();
     const [content, setContent] = useState("");
     const [media, setMedia] = useState()
     const [preview, setPreview] = useState()
     const token = localStorage.getItem("accessToken");
     const user = JSON.parse(localStorage.getItem('user'));
+    const history = createHistory();
 
-const handleChange = (e) => {
-    setMedia(e.target.files[0]);
-    setPreview(URL.createObjectURL(e.target.files[0]))
-}
+    const handleChange = (e) => {
+        setMedia(e.target.files[0]);
+        setPreview(URL.createObjectURL(e.target.files[0]))
+    }
 
     const handlePost = (e) => {
         e.preventDefault();
@@ -77,7 +77,7 @@ const handleChange = (e) => {
                             type="file"
                             name="photo"
                             onChange={handleChange}
-                        />Média
+                        /><img src={AddImage} alt=""/>
                     </label>
                     <input type="submit" value="Publier" className="button" />
                     </div>
@@ -86,4 +86,4 @@ const handleChange = (e) => {
         </div>
     ) 
 };
-export default Post
+export default Post 

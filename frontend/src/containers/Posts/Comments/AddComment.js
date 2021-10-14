@@ -9,8 +9,8 @@ const AddComment = (props) => {
     const [content, setContent] = useState();
     const postId = props.id;
     
-
-    function handleComment () {
+    
+    function handleComment () { 
         axios({
             method: "post",
             url: 'http://localhost:3000/api/comment/addComment',
@@ -23,8 +23,10 @@ const AddComment = (props) => {
                 "Content-Type": 'application/json',
                 "Authorization":  token
             }
-        }) 
+        })
+        //window.location.reload()
     }
+
    
     return(
         <div className="comment">
