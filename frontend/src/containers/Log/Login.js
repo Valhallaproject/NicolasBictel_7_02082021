@@ -34,7 +34,6 @@ const Login = () => {
           const { token } = response.data;
           window.localStorage.setItem("accessToken", token);
           JSON.stringify({ token }, null, 2) 
-          console.log(response.data);
 
           }catch (err) {
           }

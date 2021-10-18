@@ -17,8 +17,9 @@
 }
 .logoMobile{
     display: none;
-    width: 50%;
+    width: 40%;
     margin-top: 10px;
+    margin: 0;
 }
 .icon-navItem{
     width: 25%;
@@ -81,6 +82,12 @@
         height: 65%;
     }
 }
+@media screen and (min-width: 1700px){
+    .logo-header img{
+        width: 40%;
+        line-height: 200px;
+    }
+}
 
 @media screen and (max-width: 1440px){
     .logo-header{
@@ -112,5 +119,32 @@
     }
     .logoMobile{
         display: block;
+    }
+    .navItem img{
+        width: 20px;
+        height: 20px;
+    }
+    .notification img{
+        width: 20px;
+        height: 20px;
+    }
+    
+}
+@media screen and (max-width: 500px){
+    .logoMobile{
+        width: 40%;
+    }
+    .nav{
+        height: 60px;
+    }
+}
+@media screen and (max-width: 425px){
+    .logoMobile{
+        width:45%;
+    }
+}
+@media screen and (max-width: 375px){
+    .logoMobile{
+        width:50%;
     }
 }

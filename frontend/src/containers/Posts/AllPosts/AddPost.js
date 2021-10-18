@@ -5,23 +5,22 @@ import createHistory from 'history/createBrowserHistory'
 import AddImage from "../../../image/addImageWhite.png"
 import '../../../components/Photos/Photo-user/Photouser.css'
 import './AddPost.css';
-
+const history = createHistory();
 const Post = (e) => {
     const [content, setContent] = useState("");
     const [media, setMedia] = useState()
     const [preview, setPreview] = useState()
     const token = localStorage.getItem("accessToken");
     const user = JSON.parse(localStorage.getItem('user'));
-    const history = createHistory();
 
     const handleChange = (e) => {
         setMedia(e.target.files[0]);
         setPreview(URL.createObjectURL(e.target.files[0]))
     }
 
-    const handlePost = (e) => {
+    const HandlePost = (e) => {
+
         e.preventDefault();
-        console.log(media);
         axios.get('http://localhost:3000/api/user/userId',{
             params: {
                 id: user
@@ -53,14 +52,18 @@ const Post = (e) => {
                 setContent('')
                 history.go(0)
             })
-            console.log(response.data)
         })
     }
+
+        
+    
+    
+    
     return(
         <div className="post">
             <div className="text-post">
                 <PhotoUser/>
-                    <form id="newPost" className="newPost" onSubmit={handlePost} >
+                    <form id="newPost" className="newPost" onSubmit={HandlePost} >
                     <textarea
                         className="postText"
                         placeholder="Ecrivez quelque chose" 
@@ -79,7 +82,7 @@ const Post = (e) => {
                             onChange={handleChange}
                         /><img src={AddImage} alt=""/>
                     </label>
-                    <input type="submit" value="Publier" className="button" />
+                    <input type="submit" value="Publier" className="button"/>
                     </div>
                 </form>
             </div>

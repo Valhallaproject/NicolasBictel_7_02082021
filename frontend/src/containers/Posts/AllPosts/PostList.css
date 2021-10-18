@@ -57,3 +57,31 @@
     width: 100%;
     margin-bottom: 2vh;
 }
+@media screen and (max-width: 768px){
+    .postItem{
+        width: 80%;
+    }
+}
+@media screen and (max-width: 425px){
+    .postItem{
+        width: 90%;
+    }
+    .button{
+        width: 25%;
+        font-size: x-small;
+    }
+}
+@media screen and (max-width: 1200px){
+    .button{
+       
+        font-size: x-small;
+    }
+}
+@media screen and (min-width: 1800px){
+    .button{
+        font-size: x-large;
+    }
+    .postUsername{
+        font-size: x-large;
+    }
+}

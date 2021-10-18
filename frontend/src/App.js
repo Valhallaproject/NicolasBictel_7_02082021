@@ -14,7 +14,6 @@ function App() {
     baseURL : 'http://localhost:3001/api/user',
     headers : {
         "Content-Type": "application/json",
-        
     },
   });
 
@@ -33,10 +32,7 @@ instance.interceptors.request.use((config) => {
   },
   (error) => {
     return Promise.reject(error);
-  
 });
-
-
 
 //Add a response interceptor
 
@@ -53,7 +49,6 @@ instance.interceptors.response.use((res) => {
 
     return Promise.reject(err);
 })
-
   return(
     <Router>
       <Switch>

@@ -12,7 +12,6 @@ function Accueil  () {
     console.log(user);
     if (user === null) {
         window.location = "/Log"
-        
     }
 
     return(
@@ -23,7 +22,6 @@ function Accueil  () {
             <div className="publi">
                 <Publication/>
                 <AllPost/>
-                
             </div>
                 <Footer/>
         </div>

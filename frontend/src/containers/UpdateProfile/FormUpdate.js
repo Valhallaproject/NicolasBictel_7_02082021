@@ -11,18 +11,12 @@ function FormUpdate () {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    //const data = new FormData();
-    //data.append("id", user)
-    //data.append("firstName", firstName)
-    //data.append("lastName", lastName)
 
     const data = {
       id : user,
       firstName : firstName,
       lastName: lastName
     }
-    console.log(data)
-
         axios.put('http://localhost:3000/api/user/update', {data:data},{
           headers:{
             "accept": "applicacation/json",
@@ -30,13 +24,8 @@ function FormUpdate () {
           }
         })
         .then((response)=>console.log(response)
-          
-            
-                
-                          
         )
         window.location.reload();
-       
   }
   return (
     <div className="update">

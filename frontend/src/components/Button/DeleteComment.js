@@ -24,7 +24,7 @@ const DeleteComment =  (props) => {
     .then((response) =>{
             setRole(response.data.admin)
     })
-    function handleDelete (e) {
+    function handleDelete (e) {history.go(0)
         e.preventDefault();
         axios.delete('http://localhost:3000/api/comment/delete',{
             data:{
@@ -34,7 +34,6 @@ const DeleteComment =  (props) => {
                 'Authorization': token
             }
         })
-        history.go(0);
     }
     let className = "buttonC";
     
@@ -45,7 +44,7 @@ const DeleteComment =  (props) => {
         }
 
    
-
+        
 
 
     return(

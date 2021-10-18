@@ -36,3 +36,13 @@
 .buttonChide{
     display: none;
 }
+
+@media screen and (min-width: 1441px){
+    .commentItem{
+        font-size: large;
+        margin-bottom: 1vh;
+    }
+    .commentContent{
+        font-size: x-large;
+    }
+}

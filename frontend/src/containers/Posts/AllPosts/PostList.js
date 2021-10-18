@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import DeletePost from "../../../components/Button/DeletePost";
 import AddComment from "../Comments/AddComment";
 import DisplayComments from "../Comments/DisplayComments";
+
 const PostList = ( {posts}) => { 
+    
     return ( 
         <>
             {posts.map((post) => (
@@ -31,7 +33,7 @@ const PostList = ( {posts}) => {
                     </div>
                     <div className="line"></div><br/>
                     <div>
-                        <DisplayComments postId={post.id}/>
+                        <DisplayComments  postId={post.id}/>
                     </div>
                 </li>
             )).reverse()}

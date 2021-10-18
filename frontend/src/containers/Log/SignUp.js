@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-import TokenService from "../../services/token.service";
 import './SignUp.css';
 
 function SignUp () { 
@@ -11,7 +10,6 @@ function SignUp () {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    window.location.replace("http://localhost:3001/Register")
     const error = document.querySelector('.error');
     axios({
       method: "post",
@@ -24,25 +22,19 @@ function SignUp () {
       }
     })
       .then((response) => {
-        if (response.data.token) {
-          TokenService.setUser(response.data.userId);
-          console.log(response.data.userId);
-        }
         if(response.data.error){
           error.innerHTML = response.data.error;
         }
         if(response.data.message){
           error.innerHTML = response.data.message;
         }
-        else{
-          window.location ="/"
+        console.log(response.data.error);
+        console.log(response.data.message);
+        if(response.data.message === undefined && response.data.error === undefined) {
+          alert('Votre compte a bein été créé, vous pouvez vous conncecter')
+          window.location.reload()
         }
-        try {
-          const { token } = response.data;
-          window.localStorage.setItem("accessToken", token);
-          JSON.stringify({ token }, null, 2) 
-        } catch (err) {
-        }
+       
       })
       .catch((err) => {
         console.log(err);

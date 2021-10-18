@@ -1,6 +1,8 @@
 const  posts  = require('../config/sequelize-config');
 const db = require('../config/sequelize-config');
+const fs = require('fs');
 
+//Add a new post
 exports.addPost = (req, res) => {
     const userId = (req.body.userId);
     const content = (req.body.content);
@@ -19,6 +21,7 @@ exports.addPost = (req, res) => {
       .catch(error => res.status(400).json({ error }));
 };
 
+//Display all posts
 exports.getAllPost= (req, res,) => {
     db.posts.findAll({
         include:[
@@ -29,6 +32,7 @@ exports.getAllPost= (req, res,) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+//Display all posts of one user
 exports.getPostUser = (req, res) => {
     db.posts.findAll({
         where : { 
@@ -44,6 +48,7 @@ exports.getPostUser = (req, res) => {
     .catch(error => res.status(400).json({ error }));
 };
 
+//Delete one post
 exports.deletePost = (req, res) => {
     db.posts.findOne({    
         where : {id : req.body.id},
@@ -55,16 +60,35 @@ exports.deletePost = (req, res) => {
           ]
     })
     .then(post => {
-        post.destroy({   
-            
-            id: req.params.id
+        if(post === req.file){
+            const filename = post.media.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+            post.destroy({   
+                
+                id: req.params.id
+            })
+            .then(() => res.status(200).json({
+                message: 'Post supprimée !'
+            }))
+                .catch(error => res.status(400).json({
+                error
+            }));
+        
         })
-        .then(() => res.status(200).json({
-            message: 'Post supprimée !'
-        }))
-            .catch(error => res.status(400).json({
-            error
-        }));
+        }else{
+            post.destroy({   
+                
+                id: req.params.id
+            })
+            .then(() => res.status(200).json({
+                message: 'Post supprimée !'
+            }))
+                .catch(error => res.status(400).json({
+                error
+            }));
+        
+        }
+        
     })
 };
 

@@ -4,6 +4,7 @@
     margin-top: 5vh;
     z-index: 1;
     left:0;
+    
 }
 
 .Update{
@@ -42,7 +43,6 @@ h1{
     text-align: center;
 }
 .Update input{
-    
     height: 50px;
     width: 90%;
     padding-left: 20px;
@@ -67,4 +67,26 @@ h1{
     color: red;
     font-size: 20px;
     font-weight: 600;
+}
+
+
+@media screen and (min-width: 2500px){
+    .Update input{
+        margin-bottom: 3vh;
+        padding-right: 20px;
+    }
+    .htmlForm{
+        margin-bottom: 1vh;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .Update{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 425px){
+    .Update{
+        width: 90%;
+    }
 }

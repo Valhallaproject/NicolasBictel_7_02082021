@@ -4,13 +4,13 @@ import axios from "axios";
 import './DisplayComment.css'
 import DeleteComment from "../../../components/Button/DeleteComment";
 
-const DisplayComments =   (props) => {
+const DisplayComments =   (props)  => {
     const [ commentPost, setCommentPost] =  useState([]);
     const token = localStorage.getItem("accessToken"); 
     const id= props.postId
 
     useEffect(()  =>  {
-        axios.get('http://localhost:3000/api/comment/postId', {
+         axios.get('http://localhost:3000/api/comment/postId', {
         params: {
             postId : id
         },
@@ -22,11 +22,12 @@ const DisplayComments =   (props) => {
         .then((response) =>{
             setCommentPost(response.data)
         })
+    
     },[token, id]);
 
     return(
         <div className="feedComment" >
-            {commentPost.map((comment) => (
+            {commentPost.map((comment)  => (
                 <li className="commentItem" key= {comment.id}>
                     <DeleteComment id={comment.id} user={comment.userId} />
                     <p className="commentUsername">
@@ -46,4 +47,3 @@ const DisplayComments =   (props) => {
 };
 export default DisplayComments
 
-//className="commentName"
