@@ -11,7 +11,7 @@ const PhotoProfile = () => {
     const user = (localStorage.getItem('user'));
     const [ photoProfile, setPhoto] = useState();
     useEffect(() => {
-         axios.get('http://localhost:3000/api/user/userId', {
+         axios.get('http://localhost:3001/api/user/userId', {
                 params:{
                     id : user
                 } 

@@ -6,12 +6,11 @@ import LogiqueBanner from "./LogiqueBanner";
 import UpdateBanner from "./BannerModale";
 
 const Banner = () =>  {
-    
     const [banner, setBanner] = useState()
     const user = JSON.parse(localStorage.getItem('user'));
     const token = localStorage.getItem('accessToken');
     useEffect(() => {
-        axios.get('http://localhost:3000/api/user/userId',{
+        axios.get('http://localhost:3001/api/user/userId',{
             params: {
                 id: user
             }
@@ -32,7 +31,6 @@ const Banner = () =>  {
                 console.log(photo);
             };
         })
-        
     },[token, user]); 
 
     const {displayBanner, toggleBanner} = LogiqueBanner();

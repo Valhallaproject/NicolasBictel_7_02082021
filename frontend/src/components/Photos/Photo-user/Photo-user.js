@@ -9,7 +9,7 @@ function PhotoUser () {
     const [ users, setUsers ] = useState();
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/user/userId',{
+        axios.get('http://localhost:3001/api/user/userId',{
             params:{
                 id : user} 
         },{

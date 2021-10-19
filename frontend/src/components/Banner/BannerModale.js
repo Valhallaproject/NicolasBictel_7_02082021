@@ -1,10 +1,7 @@
 import React from "react";
 import UpdateBanner from './UpdateBanner'
 
-
-
 const updateBanner = ({displayBanner, hideBanner}) => displayBanner ? ( 
-  
   <React.Fragment>
       <div className="contentUpdateBanner">
         <div className="Update"> 

@@ -13,7 +13,7 @@ function SignUp () {
     const error = document.querySelector('.error');
     axios({
       method: "post",
-      url: 'http://localhost:3000/api/user/signup',
+      url: 'http://localhost:3001/api/user/signup',
       data :{
           lastName,
           firstName,
@@ -34,7 +34,6 @@ function SignUp () {
           alert('Votre compte a bein été créé, vous pouvez vous conncecter')
           window.location.reload()
         }
-       
       })
       .catch((err) => {
         console.log(err);

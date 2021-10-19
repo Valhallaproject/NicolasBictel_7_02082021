@@ -7,8 +7,8 @@ const multer = require("../middleware/multer-config")
 
 
 router.post('/addPost', auth, multer, postCtrl.addPost);
-router.get("/allPost", multer, postCtrl.getAllPost)
-router.get('/userPost',  postCtrl.getPostUser);
-router.delete('/delete', postCtrl.deletePost);
+router.get("/allPost", auth,multer, postCtrl.getAllPost)
+router.get('/userPost', postCtrl.getPostUser);
+router.delete('/delete',auth,postCtrl.deletePost);
 
 module.exports = router;

@@ -1,8 +1,6 @@
 import React from "react";
 import UpdatePhoto from './UpdatePhoto'
 
-
-
 const updatePhoto = ({displayPhoto, hidePhoto}) => displayPhoto ? ( 
   
   <React.Fragment>

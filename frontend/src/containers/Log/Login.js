@@ -3,7 +3,6 @@ import React, { useState} from "react";
 import TokenService from "../../services/token.service";
 import './Login.css';
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,30 +12,22 @@ const Login = () => {
     const error = document.querySelector('.error');
     axios({
       method: "post",
-      url: 'http://localhost:3000/api/user/login',
+      url: 'http://localhost:3001/api/user/login',
       data : {
         email,
         password,
       }
-      
     })
       .then(response => {
-        if (response.data) {
-          TokenService.setUser(response.data.userId);
-        }
         if (response.data.errors){
           error.innerHTML = response.data.errors;
-        }else {
+        }else if(response.data){
           window.location = "/"
-        }
-        
-        try {
           const { token } = response.data;
+          TokenService.setUser(response.data.userId);
           window.localStorage.setItem("accessToken", token);
           JSON.stringify({ token }, null, 2) 
-
-          }catch (err) {
-          }
+        }
       }) 
   }
     

@@ -1,6 +1,5 @@
 const db = require('../config/sequelize-config');
 
-
 exports.addComment = (req, res) => {
     if (!req.body.content) {
         return res.status(400).json({ error: "Aucun contenu" });

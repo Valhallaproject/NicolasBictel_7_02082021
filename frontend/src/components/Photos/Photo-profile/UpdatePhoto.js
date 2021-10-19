@@ -6,7 +6,6 @@ function UpdatePhoto () {
   const user = JSON.parse(localStorage.getItem('user'));
   const [photo, setPhoto] = useState();
 
-  
     const handleUpdate = async (e) =>  {
     e.preventDefault();
     
@@ -15,7 +14,7 @@ function UpdatePhoto () {
     data.append("photo", photo)
     console.log(photo);
 
-        await axios.put('http://localhost:3000/api/user/updatePhoto', data,{
+        await axios.put('http://localhost:3001/api/user/updatePhoto', data,{
           headers:{
             "Content-Type": 'multipart/form-data',
             "accept": "applicacation/json",
@@ -25,8 +24,6 @@ function UpdatePhoto () {
         .then((response)=>console.log(response))
         window.location.reload();
   }
-  
-
   
   return (
     <div className="update">
@@ -40,7 +37,6 @@ function UpdatePhoto () {
             onChange={(e) => setPhoto(e.target.files[0])}
           />
         <input type="submit" value="Modifier"  className="button"/>
-        
       </form>
     </div>
   );

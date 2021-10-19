@@ -17,10 +17,7 @@ function Header (){
     const logout = () => {
         TokenService.removeUser();
         window.location = "/Log"
-      }
-
-
-
+    }
     return(
         <div className="nav">
             <div className="logo-header">

@@ -2,10 +2,7 @@ import React from "react";
 import './Delete.css';
 import FormDelete from './FormDelete'
 
-
-
 const deleteProfile = ({displayDelete, hideDelete}) => displayDelete ? ( 
-  
   <React.Fragment>
       <div className="contentDelete">
         <div className="Delete"> 

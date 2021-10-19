@@ -10,9 +10,9 @@ router.get('/userId',multer, userCtrl.userProfile);
 router.get('/allUser', auth, multer, userCtrl.allUserProfile)
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
-router.delete('/delete', userCtrl.delete);
-router.put("/updateBanner", multer, userCtrl.updateBanner);
-router.put("/updatePhoto", multer, userCtrl.updatePhoto);
-router.put("/update",  userCtrl.update);
+router.delete('/delete',auth, userCtrl.delete);
+router.put("/updateBanner", auth, multer, userCtrl.updateBanner);
+router.put("/updatePhoto", auth, multer, userCtrl.updatePhoto);
+router.put("/update",  auth,userCtrl.update);
 
 module.exports = router;

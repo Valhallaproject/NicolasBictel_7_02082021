@@ -19,9 +19,8 @@ const Post = (e) => {
     }
 
     const HandlePost = (e) => {
-
         e.preventDefault();
-        axios.get('http://localhost:3000/api/user/userId',{
+        axios.get('http://localhost:3001/api/user/userId',{
             params: {
                 id: user
             }
@@ -32,7 +31,6 @@ const Post = (e) => {
             }
         })
         .then((response) => {
-            
             console.log(response);
             const data = new FormData();
             data.append("userId", user)
@@ -41,7 +39,7 @@ const Post = (e) => {
             console.log(media)
             axios({
                 method: "post",
-                url: 'http://localhost:3000/api/post/addPost',
+                url: 'http://localhost:3001/api/post/addPost',
                 data,
                 headers:{
                     "Content-Type": 'application/json',
@@ -54,10 +52,6 @@ const Post = (e) => {
             })
         })
     }
-
-        
-    
-    
     
     return(
         <div className="post">

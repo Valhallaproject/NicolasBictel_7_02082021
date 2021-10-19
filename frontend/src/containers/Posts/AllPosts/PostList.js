@@ -9,7 +9,6 @@ const PostList = ( {posts}) => {
     return ( 
         <>
             {posts.map((post) => (
-                
                 <li className="postItem" key= {post.id}>
                     <div className="headerPost">
                         <p className="postUsername">Publié par<span> </span>  

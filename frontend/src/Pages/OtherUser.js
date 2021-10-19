@@ -20,7 +20,6 @@ function OtherUser (props) {
    
     const UserId = JSON.parse(localStorage.getItem("userId"))
 
-
     if(user === userId){
         window.location = "/Profile"
     }
@@ -30,7 +29,7 @@ function OtherUser (props) {
     const [photo, setPhoto] = useState();
     const [banner, setBanner] = useState();
     useEffect(() => {
-        axios.get('http://localhost:3000/api/user/userId', {
+        axios.get('http://localhost:3001/api/user/userId', {
             params:{
                 id: UserId
             }
@@ -63,7 +62,7 @@ function OtherUser (props) {
     //récupération des posts utilisateur
     const [ userPosts, setUserPosts] = useState([]);
     useEffect(() => {    
-        axios.get('http://localhost:3000/api/post/userPost',{
+        axios.get('http://localhost:3001/api/post/userPost',{
             params: {
                 userId: UserId
             }

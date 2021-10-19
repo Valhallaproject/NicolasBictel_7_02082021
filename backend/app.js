@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors')
 const bodyParser = require('body-parser');
+const helmet = require("helmet");
 const path = require('path');
-
 
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
@@ -11,6 +11,7 @@ const commentRoutes = require('./routes/comments');
 const app = express();
 
 app.use(cors())
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 

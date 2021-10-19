@@ -11,8 +11,7 @@ const DeletePost =  (props) => {
     const postId = props.id;
     const userPost = props.user;
     const [role, setRole] = useState();
-    
-        axios.get('http://localhost:3000/api/user/userId',{
+        axios.get('http://localhost:3001/api/user/userId',{
             params:{
                 id : user} 
         },{
@@ -25,10 +24,9 @@ const DeletePost =  (props) => {
                 setRole(response.data.admin)
         })
     
-    
     function HandleDelete (e) {
         e.preventDefault();
-        axios.delete('http://localhost:3000/api/post/delete',{
+        axios.delete('http://localhost:3001/api/post/delete',{
             data:{
                 id: postId
             },
@@ -37,7 +35,6 @@ const DeletePost =  (props) => {
             }
         })
         history.go(0);
-
     }
     let className = "button";
     if (user === userPost || role === 'admin') {

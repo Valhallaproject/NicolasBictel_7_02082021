@@ -12,7 +12,7 @@ function UpdateBanner () {
     data.append("id", user)
     data.append("photo", banner)
 
-        axios.put('http://localhost:3000/api/user/updateBanner', data,{
+        axios.put('http://localhost:3001/api/user/updateBanner', data,{
           headers:{
             "Content-Type": 'multipart/form-data',
             "accept": "applicacation/json",
@@ -25,7 +25,6 @@ function UpdateBanner () {
   return (
     <div className="update">
       <form  enctype="multipart/form-data"  id="update" className="update-form"  onSubmit={handleUpdate}>
-    
         <label className="htmlForm" id="Banner" htmlFor="banner">Photo de banniére</label>
         <input
           type="file"

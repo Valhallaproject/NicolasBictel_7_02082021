@@ -3,14 +3,10 @@ const bcrypt = require('bcrypt');    //Plugin for hashing the password
 const jwt = require('jsonwebtoken');     //Plugin for token creation
 const passwordValidator = require('password-validator');    //plugin to valid password
 const db = require('../config/sequelize-config');
-//const mysql = require("mysql2");
 const fs = require('fs'); 
-
-
 const user = db.users
-//const post = db.posts
 
-const url = 'http://localhost:3000/images/'
+const url = 'http://localhost:3001/images/'
 
 const schemaPassword = new passwordValidator();
 schemaPassword
@@ -28,8 +24,6 @@ exports.signup = (req, res, next) => {
   const lastName = (req.body.lastName);
   const password = (req.body.password);
   const admin = "admin@groupomania.fr"
-  
-
 
   const regexLastName = /^[A-Z][A-Za-z\é\è\ê\ø\-]+$/;
   const verifyLastName = lastName.match(regexLastName);
@@ -50,7 +44,6 @@ exports.signup = (req, res, next) => {
   if(email != verifyEmail){
     return res.status(201).json({ error : "Veuillez entrer une adresse email Valide !"});
   }
-
   if(schemaPassword.validate(password) && email === admin) {
     bcrypt.hash(password, 10)    //we hash the password
     .then(hash => {
@@ -71,10 +64,6 @@ exports.signup = (req, res, next) => {
         .catch(error => res.status(201).json({ message : "Utilisateur éxistant !" }));
     })
   }
-
-
-
-
   else if(schemaPassword.validate(password)) {
   bcrypt.hash(password, 10)    //we hash the password
   .then(hash => {
@@ -147,7 +136,7 @@ exports.delete = (req, res) => {
         if (!valid) {
           return res.status(200).json({ error: 'Mot de passe incorrect !' });
         } 
-        else if(user === req.file){
+        else if(user.photo !== null){
           const photo = user.photo.split('/images/')[1];
           fs.unlink(`images/${photo}`, () => {
         user.destroy({ 
@@ -232,7 +221,19 @@ exports.updatePhoto= (req, res) => {
 }
 exports.update= (req, res) => {
   const firstName = (req.body.data.firstName);
-  const lastName = (req.body.data.lastName);      
+  const lastName = (req.body.data.lastName); 
+
+  const regexLastName = /^[A-Z][A-Za-z\é\è\ê\ø\-]+$/;
+  const verifyLastName = lastName.match(regexLastName);
+  const regexFirstName = /^[A-Z][A-Za-z\é\è\ê\ø\-]+$/;
+  const verifyFirstName = firstName.match(regexFirstName);
+
+  if(lastName != verifyLastName){
+    return res.status(201).json({ error : "Votre Nom ne doit comporter que des lettres et au moins une majuscule !"});
+  }
+  if(firstName != verifyFirstName){
+    return res.status(201).json({ error : "Votre prénom ne doit comporter que des lettres et au moins une majuscule  !"});
+  }
       
   user.update({
     firstName: firstName ? firstName: user.firstName,

@@ -1,10 +1,7 @@
-
-    
     export const getLocalAccessToken = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       console.log(user);
       return user?.accessToken;
-      
     }
   
     export const updateLocalAccessToken =(token) => {
@@ -24,6 +21,7 @@
   
     const removeUser = () => {
       localStorage.removeItem("user");
+      localStorage.removeItem("userId");
       localStorage.removeItem("accessToken")
     }
     const TokenService = {

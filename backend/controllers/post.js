@@ -12,13 +12,13 @@ exports.addPost = (req, res) => {
      }else{
         mediaUrl = null
      } 
-  db.posts.create({
-      media: mediaUrl,
-      content: content,
-      userId : userId
-  })
-      .then(() => res.status(201).json({ message: "Post enregistré" }))
-      .catch(error => res.status(400).json({ error }));
+    db.posts.create({
+        media: mediaUrl,
+        content: content,
+        userId : userId
+    })
+    .then(() => res.status(201).json({ message: "Post enregistré" }))
+    .catch(error => res.status(400).json({ error }));
 };
 
 //Display all posts
@@ -60,11 +60,10 @@ exports.deletePost = (req, res) => {
           ]
     })
     .then(post => {
-        if(post === req.file){
+        if(post.media !== null ){
             const filename = post.media.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => {
             post.destroy({   
-                
                 id: req.params.id
             })
             .then(() => res.status(200).json({
@@ -73,11 +72,9 @@ exports.deletePost = (req, res) => {
                 .catch(error => res.status(400).json({
                 error
             }));
-        
         })
         }else{
             post.destroy({   
-                
                 id: req.params.id
             })
             .then(() => res.status(200).json({
@@ -86,9 +83,7 @@ exports.deletePost = (req, res) => {
                 .catch(error => res.status(400).json({
                 error
             }));
-        
         }
-        
     })
 };
 

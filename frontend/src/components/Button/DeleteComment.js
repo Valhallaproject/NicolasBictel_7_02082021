@@ -11,8 +11,7 @@ const DeleteComment =  (props) => {
     const commentId = props.id
     const userComment = props.user
     const [role, setRole] = useState();
-
-    axios.get('http://localhost:3000/api/user/userId',{
+    axios.get('http://localhost:3001/api/user/userId',{
         params:{
             id : user} 
     },{
@@ -24,9 +23,10 @@ const DeleteComment =  (props) => {
     .then((response) =>{
             setRole(response.data.admin)
     })
-    function handleDelete (e) {history.go(0)
+
+    function HandleDelete (e) {history.go(0)
         e.preventDefault();
-        axios.delete('http://localhost:3000/api/comment/delete',{
+        axios.delete('http://localhost:3001/api/comment/delete',{
             data:{
                 id: commentId
             },
@@ -36,19 +36,13 @@ const DeleteComment =  (props) => {
         })
     }
     let className = "buttonC";
-    
         if ( user === userComment || role === 'admin') {
             className += "display";
         }else{
             className += "hide";
         }
-
-   
-        
-
-
     return(
-        <button className={className} onClick={handleDelete}>
+        <button className={className} onClick={HandleDelete}>
             <img src={iconRemove} alt="bouton supprimer"/>
         </button>
     )

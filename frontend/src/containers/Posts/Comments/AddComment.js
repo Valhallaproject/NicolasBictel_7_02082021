@@ -4,18 +4,17 @@ import createHistory from 'history/createBrowserHistory'
 import "./AddComment.css";
 
 const history = createHistory();
-const AddComment = (props) => {
+const AddComment =  (props) => {
     
-    const token =localStorage.getItem('acecssToken');
+    const token =localStorage.getItem('accessToken');
     const user = JSON.parse(localStorage.getItem('user'));
     const [content, setContent] = useState();
     const postId = props.id;
     
-    function HandleComment (e) { 
-        e.preventDefault();
+    function HandleComment (e){ 
         axios({
             method: "post",
-            url: 'http://localhost:3000/api/comment/addComment',
+            url: 'http://localhost:3001/api/comment/addComment',
             data : {
                 content,
                 userId: user,
@@ -25,13 +24,12 @@ const AddComment = (props) => {
                 "Content-Type": 'application/json',
                 "Authorization":  token
             }
-            
         })
         .then((response) =>{
-            setContent("")
-            
+            setContent("") ;
+            history.go(0)
         })
-     history.go(0)
+        e.preventDefault();
     } 
     return(
         <div className="comment">
@@ -49,8 +47,6 @@ const AddComment = (props) => {
             </div>
         </div>
     ) 
-
-
 };
 
 export default AddComment

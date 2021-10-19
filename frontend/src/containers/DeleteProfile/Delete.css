@@ -65,8 +65,8 @@ h1{
     border-radius: 5px;
     width: 50%;
 }
-.error{
-    color: red;
+.errorModale{
+    color: white;
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
 }
